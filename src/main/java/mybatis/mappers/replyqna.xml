@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.replyqna">
+
+	<resultMap type="reqnaVO" id="reqnaResult">
+		<result property="qreplyno" column="qreplyno"/>
+		<result property="qrearticleno" column="qrearticleno"/>
+		<result property="qreid" column="qreid"/>
+		<result property="qrecontent" column="qrecontent"/>
+		<result property="qrewritedate" column="qrewritedate"/>
+	</resultMap>
+	
+	<insert id="insertReplyQna" parameterType="reqnaVO"> 
+		<![CDATA[insert into replyqna(qrearticleno,qreid,qrecontent) values(#{qrearticleno},#{qreid},#{qrecontent})]]>
+	</insert>
+	
+	<select id="getlistReplyQna" resultMap="reqnaResult" parameterType="Int">
+		<![CDATA[select * from replyqna where qrearticleno=#{qrearticleno}]]>
+	</select>
+	
+	<delete id="deleteReplyQna" parameterType="Int">
+		<![CDATA[delete from replyqna where qreplyno=#{qreplyno}]]>
+	</delete>
+	
+	<update id="updateReplyQna" parameterType="reqnaVO">
+		<![CDATA[update replyqna set qrecontent=#{qrecontent} where qreplyno=#{qreplyno}]]>
+	</update>
+	
+</mapper>
