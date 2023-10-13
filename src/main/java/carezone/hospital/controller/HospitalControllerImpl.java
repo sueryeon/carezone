@@ -44,7 +44,7 @@ public class HospitalControllerImpl implements HospitalController {
 	private String viewName=null;
 	private HospitalVO hosVO;
 	//private String HOSPITAL_REPO="C:\\hospital";
-	private String HOSPITAL_REPO="/Users/lily/Desktop";
+	private String HOSPITAL_REPO="D:\\";
 	@Override
 	@RequestMapping(value={"/gethospitalForm.do"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView gethospitalForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
