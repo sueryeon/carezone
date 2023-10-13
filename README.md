@@ -2,7 +2,8 @@
 care_zone
 
 ##회원가입 시퀀스 다이어그램
-![회원가입 시퀀스 다이어그램](https://github.com/kjh73/carezone/assets/143463661/373ff696-8488-4627-a1b5-27c27a4836bb)
+![회원가입seqdiagram](https://github.com/kjh73/carezone/assets/143463661/f8c0b42a-759e-4a92-8caa-27542eb13fa0)
+
 
 
 ##DB E-R Diagram
