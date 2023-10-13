@@ -1,0 +1,10 @@
+<option value="가야읍">가야읍</option>
+<option value="군북면">군북면</option>
+<option value="대산면">대산면</option>
+<option value="법수면">법수면</option>
+<option value="산인면">산인면</option>
+<option value="여항면">여항면</option>
+<option value="칠북면">칠북면</option>
+<option value="칠서면">칠서면</option>
+<option value="칠원읍">칠원읍</option>
+<option value="함안면">함안면</option>

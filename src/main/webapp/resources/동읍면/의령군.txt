@@ -1,0 +1,13 @@
+<option value="가례면">가례면</option>
+<option value="궁류면">궁류면</option>
+<option value="낙서면">낙서면</option>
+<option value="대의면">대의면</option>
+<option value="봉수면">봉수면</option>
+<option value="부림면">부림면</option>
+<option value="용덕면">용덕면</option>
+<option value="유곡면">유곡면</option>
+<option value="의령읍">의령읍</option>
+<option value="정곡면">정곡면</option>
+<option value="지정면">지정면</option>
+<option value="칠곡면">칠곡면</option>
+<option value="화정면">화정면</option>

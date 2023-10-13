@@ -1,0 +1,14 @@
+<option value="계성면">계성면</option>
+<option value="고암면">고암면</option>
+<option value="길곡면">길곡면</option>
+<option value="남지읍">남지읍</option>
+<option value="대지면">대지면</option>
+<option value="대합면">대합면</option>
+<option value="도천면">도천면</option>
+<option value="부곡면">부곡면</option>
+<option value="성산면">성산면</option>
+<option value="영산면">영산면</option>
+<option value="유어면">유어면</option>
+<option value="이방면">이방면</option>
+<option value="장마면">장마면</option>
+<option value="창녕읍">창녕읍</option>

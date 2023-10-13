@@ -1,0 +1,10 @@
+<option value="고현면">고현면</option>
+<option value="남면">남면</option>
+<option value="남해읍">남해읍</option>
+<option value="미조면">미조면</option>
+<option value="삼동면">삼동면</option>
+<option value="상주면">상주면</option>
+<option value="서면">서면</option>
+<option value="설천면">설천면</option>
+<option value="이동면">이동면</option>
+<option value="창선면">창선면</option>

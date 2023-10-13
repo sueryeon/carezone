@@ -528,6 +528,7 @@ function stateList(){
 						<div class="card-header">
 					    	<b class="float-start">건강한 Tip!</b>
 						</div>
+						<!-- 
 					  	<div class="d-flex justify-content-between h-100">
 						  	<div class="border border-secondary-subtle w-50 h-100 d-flex align-content-between flex-wrap">
 					  			<iframe height="130" class="w-100 p-2" src="https://www.youtube.com/embed/sWKJPUibW5Y?si=onmf_QKyFqIBsKxz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -538,6 +539,7 @@ function stateList(){
 					  			<h6 style="font-size:12px;" class="p-2">[손씻기 실험영상] 올바른 손씻기 6단계에는 다 이유가 있습니다</h6>
 					  		</div>
 					    </div>
+					     -->
 					</div>
                 </div>
             </div>
