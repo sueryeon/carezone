@@ -36,7 +36,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		System.out.println("――――――――――――――――ReservationDAO : insertReservation――――――――――――――――");
 		
 		String rsubname=rsvVO.getRsubname();
-		if(rsubname!=null||rsubname.length()!=0) {
+		if(rsubname!=null) {
 			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO);
 		}
 		else {
@@ -113,8 +113,10 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 		System.out.println("――――――――――――――――ReservationDAO : updateReservation――――――――――――――――");
 		
-		int result=sqlsession.insert("mapper.reservation.updateReservation", rsvVO);
-		
+		int result=sqlsession.update("mapper.reservation.updateReservation", rsvVO);
+		System.out.println(rsvVO.getRno());
+		System.out.println(rsvVO.getRhospital());
+		System.out.println(rsvVO.getRvcc());
 		return result;
 	}
 

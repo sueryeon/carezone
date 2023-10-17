@@ -39,7 +39,7 @@ public class QnaControllerImpl implements QnaController {
 	private QnaVO qnaVO;
 	private String viewName=null;
 	
-	private String 	QNA_IMG_REPO="c:\\qna\\qna_img";
+	//private String 	QNA_IMG_REPO="c:\\qna\\qna_img";
 	
 	@Override
 	@RequestMapping(value=("/getqnaForm.do"), method= {RequestMethod.GET, RequestMethod.POST})
@@ -70,7 +70,7 @@ public class QnaControllerImpl implements QnaController {
 		multi.setCharacterEncoding("UTF-8");
 		viewName=getViewName(multi);
 		Map<String, Object> qnaMap = new HashMap<String, Object>();
-		String realPath = multi.getServletContext().getRealPath("/qna");	
+		String QNA_IMG_REPO = multi.getServletContext().getRealPath("/qna");	
 		
 		Enumeration enu=multi.getParameterNames();
 		while(enu.hasMoreElements()) {
@@ -171,7 +171,7 @@ public class QnaControllerImpl implements QnaController {
 		multi.setCharacterEncoding("UTF-8");
 		viewName=getViewName(multi);
 		Map<String, Object> qnaMap = new HashMap<String, Object>();
-		
+		String QNA_IMG_REPO = multi.getServletContext().getRealPath("/qna");
 		Enumeration enu=multi.getParameterNames();
 		while(enu.hasMoreElements()) {
 			
@@ -248,7 +248,7 @@ public class QnaControllerImpl implements QnaController {
 			throws Exception {
 		
 		System.out.println("=======================qna 컨트롤러 : deleteQna=======================");
-		
+		String QNA_IMG_REPO = request.getServletContext().getRealPath("/qna");
 		request.setCharacterEncoding("UTF-8");
 		//----------------------------------------------전처리▲
 		
@@ -408,7 +408,7 @@ public class QnaControllerImpl implements QnaController {
 		
 		String qimgfile= null;
 		Iterator<String> fileNames = multi.getFileNames();
-		
+		String QNA_IMG_REPO = multi.getServletContext().getRealPath("/qna");
 		while(fileNames.hasNext()){
 			
 			String fileName = fileNames.next();

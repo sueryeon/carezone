@@ -98,7 +98,7 @@ window.onload=function(){
 					<h3 class="border-bottom border-2 border-secondary-subtle pb-3 mt-4 pt-5 mb-0"><strong>본인 인증</strong></h3>
 					<div class="right-box mt-4 mb-4" >
 						<div class="m-auto mt-3 m-0">
-							<table class="table table-striped">
+							<table class="table">
 								<thead>
 									<tr>
 										<th scope="col">병원 이름</th>
@@ -141,9 +141,6 @@ window.onload=function(){
 			</div>
 		</div>
 	</div>
-	
-	
-	
 	<jsp:include page="../footer.jsp"/>
 
 </body>

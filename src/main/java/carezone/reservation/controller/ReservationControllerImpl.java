@@ -298,27 +298,108 @@ public class ReservationControllerImpl implements ReservationController {
 		System.out.println("=======================ReservationController : updateReservation=======================");
 		
 		request.setCharacterEncoding("UTF-8");
-		int result=0;
-		int rno=Integer.parseInt(request.getParameter("rno"));
-		String rhospital=request.getParameter("rhospital");
-		String rvcc=request.getParameter("rvcc");
-		String rdate1=request.getParameter("rdate");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date rdate = dateFormat.parse(rdate1);
-        /*String rsubname=null;
-        String rsubbirth1=null;
-        int rsubbirth2=0;*/
-        
-        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
-		//----------------------------------------------전처리▲
 		
-		result=reservationService.updateReservation(rsvVO);
-		//----------------------------------------------서비스 메서드 실행▲
+		String action=request.getParameter("action");
 		
-		ModelAndView mav=new ModelAndView("redirect:/reservation/getlistReservations.do");
-		//----------------------------------------------mav 세팅▲
+		System.out.println(action);
+		HttpSession session = request.getSession();
+		MemberVO memVO = (MemberVO) session.getAttribute("memVO");
+		
+		if(memVO.getMid()!=null||memVO.getMid().length()!=0) {
+			
+			if(action.equals("family")) {
+				
+				System.out.println("도착했씁");
+				int result=0;
+				
+				int rno=Integer.parseInt(request.getParameter("rno"));
+				String rhospital=request.getParameter("rhospital");
+				String rvcc=request.getParameter("rvcc");
+				String rdate1=request.getParameter("rdate");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        Date rdate = dateFormat.parse(rdate1);
+				System.out.println("rno"+rno);
+				System.out.println("rno"+rhospital);
+				System.out.println("rno"+rvcc);
+				System.out.println("rno"+rdate);
+				
+		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
+				//----------------------------------------------전처리▲
+				
+				result=reservationService.updateReservation(rsvVO);
+				ModelAndView mav=new ModelAndView("redirect:/reservation/getlistMyReservations.do");
+				
+				return mav;
+			}
+			else if(action.equals("self")) {
 
-		return mav;
+				System.out.println("셀프존 도착");
+				
+				int result=0;
+				System.out.println();
+				int rno=Integer.parseInt(request.getParameter("rno"));
+				String rhospital=request.getParameter("rhospital");
+				String rvcc=request.getParameter("rvcc");
+				String rdate1=request.getParameter("rdate");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        Date rdate = dateFormat.parse(rdate1);
+				
+		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
+				//----------------------------------------------전처리▲
+				
+				result=reservationService.updateReservation(rsvVO);
+				ModelAndView mav=new ModelAndView("redirect:/reservation/getlistMyReservations.do");
+				return mav;
+				
+			}
+			else {
+				System.out.println("완전오류");
+				return null;
+			}
+		}
+		else {
+			
+			if(action.equals("family")) {
+				
+				int result=0;
+				System.out.println("가족 도착");
+				int rno=Integer.parseInt(request.getParameter("rno"));
+				System.out.println("rno"+rno);
+				String rhospital=request.getParameter("rhospital");
+				String rvcc=request.getParameter("rvcc");
+				String rdate1=request.getParameter("rdate");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        Date rdate = dateFormat.parse(rdate1);
+				
+		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
+				//----------------------------------------------전처리▲
+				
+				result=reservationService.updateReservation(rsvVO);
+				
+			}
+			else if(action.equals("self")) {
+
+				int result=0;
+				System.out.println("셀프존 도착");
+				int rno=Integer.parseInt(request.getParameter("rno"));
+				String rhospital=request.getParameter("rhospital");
+				String rvcc=request.getParameter("rvcc");
+				String rdate1=request.getParameter("rdate");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        Date rdate = dateFormat.parse(rdate1);
+				
+		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
+				//----------------------------------------------전처리▲
+				
+				result=reservationService.updateReservation(rsvVO);
+				
+			}
+			
+			ModelAndView mav=new ModelAndView("redirect:/reservation/getlistReservations.do");
+			
+			return mav;
+		}
+		
 	}
 	
 	@Override

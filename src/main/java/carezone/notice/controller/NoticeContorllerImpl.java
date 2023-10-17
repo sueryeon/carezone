@@ -37,7 +37,7 @@ public class NoticeContorllerImpl implements NoticeController {
 	
 	private NoticeVO noticeVO;
 	private String viewName=null;
-	private String 	NOTICE_IMG_REPO="c:\\notice\\notice_img";
+	//private String 	NOTICE_IMG_REPO="c:\\notice\\notice_img";
 	
 	@Override
 	@RequestMapping(value=("/getNoticeForm.do"), method= {RequestMethod.GET, RequestMethod.POST})
@@ -78,6 +78,7 @@ public class NoticeContorllerImpl implements NoticeController {
 		multi.setCharacterEncoding("UTF-8");
 		viewName=getViewName(multi);
 		Map<String, Object> noticeMap = new HashMap<String, Object>();
+		String 	NOTICE_IMG_REPO = multi.getServletContext().getRealPath("/notice");
 		
 		Enumeration enu=multi.getParameterNames();
 		while(enu.hasMoreElements()) {
@@ -197,7 +198,7 @@ public class NoticeContorllerImpl implements NoticeController {
 		multi.setCharacterEncoding("UTF-8");
 		viewName=getViewName(multi);
 		Map<String, Object> noticeMap = new HashMap<String, Object>();
-		
+		String 	NOTICE_IMG_REPO = multi.getServletContext().getRealPath("/notice");
 		Enumeration enu=multi.getParameterNames();
 		while(enu.hasMoreElements()) {
 			
@@ -273,7 +274,7 @@ public class NoticeContorllerImpl implements NoticeController {
 			throws Exception {
 
 		System.out.println("=======================공지사항 컨트롤 : deleteNotice=======================");
-		
+		String 	NOTICE_IMG_REPO = request.getServletContext().getRealPath("/notice");
 		request.setCharacterEncoding("UTF-8");
 		//----------------------------------------------전처리▲
 		
@@ -297,7 +298,7 @@ public class NoticeContorllerImpl implements NoticeController {
 	private String insert(MultipartHttpServletRequest multi) throws Exception {
 		
 		System.out.println("RE : insert ");
-		
+		String 	NOTICE_IMG_REPO = multi.getServletContext().getRealPath("/notice");
 		String nimgfile= null;
 		Iterator<String> fileNames = multi.getFileNames();
 		

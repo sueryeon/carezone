@@ -595,20 +595,26 @@ public class MemberControllerImpl implements MemberController {
 	         
 	      }
 	      else if(ajax!=null&&_mno!=null) {
+	         PrintWriter out=response.getWriter();
+	         Gson gson = new Gson();
 	         
 	         System.out.println("예약페이지에서 가족정보 불러오기 메서드");
-	         int mno=Integer.parseInt(_mno);
-	         PrintWriter out=response.getWriter();
-	         fno=mno;
-	         List<FamilyVO> familyList = memberService.getlistFamilyMembers(fno);
-	         System.out.println("서비스 갔다가 옴. 사이즈"+familyList.size());
-	         Gson gson = new Gson();
-
-	           String json_familyList = gson.toJson(familyList);
-	          System.out.println(json_familyList);
-	         out.println(json_familyList);
+	         if(_mno.length()!=0) {
+	        	int mno=Integer.parseInt(_mno);
+		         fno=mno;
+		         List<FamilyVO> familyList = memberService.getlistFamilyMembers(fno);
+		         System.out.println("서비스 갔다가 옴. 사이즈"+familyList.size());
+		         String json_familyList = gson.toJson(familyList);
+		         System.out.println(json_familyList);
+		         out.println(json_familyList);
+		         
+		         return null; 
+	         }
+	         else {
+	        	 out.println("저장된 가족 정보가 없습니다.");
+	        	 return null;
+	         }
 	         
-	         return null;
 	      }
 	      else {
 	         System.out.println("ajax는 null 이 아닌데 _mno가 null 입니다. 완전 오류입니다.");

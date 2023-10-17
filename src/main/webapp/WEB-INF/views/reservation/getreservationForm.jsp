@@ -232,11 +232,24 @@ function stateList(){
 	//step1
 
 	function fn_step1_next(obj){
+		var urlParams = new URLSearchParams(window.location.search);
+		var hosname = urlParams.get('hosname');
+		console.log(hosname);
+		var step3=document.getElementById("step3");
 		var step2=document.getElementById("step2");
 		var step1=document.getElementById("step1");
 		
-		step2.style.display="block";
-		step1.style.display="none";
+		if(hosname.length!=0){
+			step2.style.display="none";
+			step1.style.display="none";
+			step3.style.display="block";
+		}
+		
+		else{
+			step2.style.display="block";
+			step1.style.display="none";
+			step3.style.display="none";
+		}		
 		
 	}
 
@@ -378,8 +391,6 @@ function stateList(){
 	            		modalresult+="<p class='card-text' id='fphone' >연락처 : "+fphone+"</p></div></div></button>";
 
 	            		$("#modalbody").html(modalresult);
-
-
 	            	}
             	}
             	else{
@@ -413,8 +424,7 @@ function stateList(){
 
 	}  
 	
-	window.onload=function(){
-		
+	window.onload=function(){		
 		var isLogin = "${isLogin}";
 		var isAdminLogin = "${isAdminLogin}";
 		console.log("isAdminLogin : "+isAdminLogin);
