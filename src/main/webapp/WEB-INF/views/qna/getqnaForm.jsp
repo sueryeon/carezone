@@ -1,61 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false" import="java.util.*"%>
+    pageEncoding="UTF-8" isELIgnored="false"
+    import = "javax.servlet.http.HttpSession"
+    import = "carezone.member.vo.AdminVO"
+    %>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
-	request.setCharacterEncoding("UTF-8");
+<% 
 	String contextPath = request.getContextPath();
+
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-	function readURL(input){
-		if(input.files&&input.files[0]){
-			var reader=new FileReader();
-			reader.onload=function(e){
-				$('#preview').attr('src',e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	
-	function backToList(obj){
-		obj.action = "${contextPath}/qna/getlistQna.do";
-		obj.submit();
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+<script>
+	function writeCancel(){
+		var cancelurl = "<%=contextPath%>/qna/getlistQna.do";
+		window.location.href=cancelurl;
 	}
 </script>
+<style type="text/css">
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body{
+    width: 100%;
+    
+}
+
+
+.wrap-container{
+    width: 70%;
+    margin: 0 auto;
+}
+
+a{
+	text-decoration:none !important;
+}
+
+
+.btn-primary{
+   background-color:#3f78bf !important;
+   border-color:#3f78bf !important;
+}
+
+.btn-primary a{
+	text-decoration: none;
+	color: white;
+}
+
+.btn-outline-primary{
+   border-color:#3f78bf !important;
+   color:#3f78bf !important;
+}
+
+.btn-outline-primary:hover{
+	background-color: #3f78bf !important;
+	color: white !important;
+}
+
+.btn-outline-primary a{
+	text-decoration: none;
+	color: white;
+}
+</style>
+<title>글쓰기 창</title>
 </head>
 <body>
-	<h1 style="text-align:center">새 글 쓰기</h1>
-	<form name="QnaArticleForm" method="post" action="<%=contextPath %>/qna/insertQna.do" enctype="multipart/form-data">
-		<input type="hidden" name="qid" value="${memVO.mid}"/>
-		<table border="0" align="center">
-			<tr>
-				<td align="right">글제목 : </td>
-				<td colspan="2"><input type="text" size="67" maxlength="500" name="qtitle"/></td>
-			</tr>
-			<tr>
-				<td align="right">글내용 : </td>
-				<td colspan="2"><textarea rows="10" cols="65" maxlength="4000" name="qcontent"></textarea></td>
-			</tr>
-			<tr>
-				<td align="right">이미지파일 첨부 : </td>
-				<td><input type="file" onchange="readURL(this);" name="qimgfile"/></td>
-				<td><img id="preview" src="" width=200 height=200></td>
-			</tr>
-			<tr>
-				<td align="right"></td>
-				<td colspan="2">
-					<input type="submit" value="글쓰기"/>
-					<input type="button" value="목록보기" onClick="backToList(this.form)"/>
-				</td>
-			</tr>
-		</table>		
-	</form>
+	<jsp:include page="../nav.jsp"/>
+	<div class="container-fluid p-3 pt-4 bg-light text-dark pb-5">
+		<div class="wrap-container justify-center">
+			<h3 class="border-bottom border-2 border-secondary-subtle text-start pb-3 mt-4 pt-5 mb-0"><strong>글쓰기</strong></h3>
+			<div class="mt-4" style="width:100%;">
+				<form action="<%=contextPath%>/qna/insertQna.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" value="${memVO.mid }" id="qid" name="qid">
+					<div class="mb-3">
+					  	<input type="text" class="form-control" id="qtitle" name="qtitle" placeholder="제목을 입력하세요">
+					</div>
+					<div class="mb-3">
+					  <label for="exampleFormControlTextarea1" class="form-label">글 내용</label>
+					  <textarea class="form-control" id="qcontent" name="qcontent" rows="3" style="min-height:200px;"></textarea>
+					</div>
+					<div class="mb-3">
+				  		<input class="form-control" type="file" id="qimgfile" name="qimgfile">
+					</div>
+					<input type="submit" class="btn btn-outline-primary me-2" value="글작성">
+					<input type="button" class="btn btn-outline-primary" onClick="writeCancel()" value="취소">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<jsp:include page="../footer.jsp"/>
 </body>
-</html>

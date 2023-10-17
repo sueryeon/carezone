@@ -8,13 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import carezone.checklist.VO.CheckVO;
 import carezone.checklist.service.CheckService;
+import carezone.member.vo.FamilyVO;
 import carezone.member.vo.MemberVO;
 
 @Controller("checkController")
@@ -141,7 +144,28 @@ public class CheckControllerImpl implements CheckController {
 		return fileName;
 	}
 
-
-
+	@Override
+	@ResponseBody
+	@RequestMapping(value={"/getHomechecklist.do"}, method= {RequestMethod.GET, RequestMethod.POST},produces= {MediaType.APPLICATION_JSON_VALUE})
+	public List<FamilyVO> getHomechecklist(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println("=======================체크리스트 컨트롤러 : getHomechecklist=======================");
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String mno=request.getParameter("mno");
+		System.out.println(mno);
+		
+		List<FamilyVO> familyList=checkService.getHomechecklist(mno);
+		
+		for(int i=0; i<familyList.size(); i++) {
+			
+			FamilyVO fmvo=familyList.get(i);
+			System.out.println("가족이름"+i+"번째 : "+fmvo.getFname());
+		}
+		return familyList;
+		
+	}
 
 }

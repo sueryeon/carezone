@@ -412,6 +412,29 @@
 	function fn_emailcheck(){
 		var memail1 = document.getElementById("memail1").value;
 		var memail2 = document.getElementById("memail2").value;
+        /*이메일 유효성 검사*/
+		if(!memail1){ // mbirth2 필드의 값이 없다면
+			console.log(memail1);
+		    var memail1alert = document.getElementById("memail1alert");
+		    memail1alert.style.display = "block"; // div를 화면에 표시
+		    signup.memail1.focus();
+		    return false; 
+		}
+		else if(memail1){
+			var memail1alert = document.getElementById("memail1alert");
+		 	memail1alert.style.display = "none"; // div를 화면에 표시
+		}
+      
+      	if(!memail2){ // memail2 필드의 값이 없다면
+          var memail2alert = document.getElementById("memail2alert");
+          memail2alert.style.display = "block"; // div를 화면에 표시
+          signup.memail2.focus();
+          return false; 
+	      }
+	      else{
+	      	 var memail2alert = document.getElementById("memail2alert");
+	      	 memail2alert.style.display = "none"; // div를 화면에 표시
+	      }
 		alert('인증번호를 발송했습니다.\n 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해 주세요.');
 		$.ajax({
 			url:"<%=contextPath%>/member/emailcheck.do",

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import carezone.checklist.VO.CheckVO;
+import carezone.member.vo.FamilyVO;
 
 @Repository("checkDAO")
 public class CheckDAOImpl implements CheckDAO {
@@ -34,6 +35,17 @@ public class CheckDAOImpl implements CheckDAO {
 		int listType=sqlsession.selectOne("mapper.checklist.selectCheckType", checkVO); // 업데이트 후 가져오기.
 		
 		return listType;
+	}
+
+	@Override
+	public List<FamilyVO> getHomechecklist(String fno) throws Exception {
+		
+		System.out.println("――――――――――――――――체크리스트 DAO : changeCheckType――――――――――――――――");
+		
+		List<FamilyVO> familyList=sqlsession.selectList("mapper.member.selectAllFamilyList",fno);
+		
+		return familyList;
+	
 	}
 	
 	

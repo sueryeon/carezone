@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
@@ -14,23 +13,18 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <link rel="stylesheet" href="../resources/CSS/adminLoginForm.css">
 <title>관리자 로그인창</title>
-<c:set var="result" value="${param.result}"/>
-<c:set var="inputid" value="${param.inputid }"/>
-<c:choose>
-	<c:when test="${result == 'loginFailed'}">
-		<script>
-			window.onload=function(){
-				loginfalse = document.getElementById("loginfalse");
-				loginfalse.style.display="block";
-				loginform.adid.value="${inputid}";
-				loginform.adpwd.focus();
-			}
-		</script>
-	</c:when>
-</c:choose>
 <script>
 
 	window.onload=function(){
+		var result = "${result}";
+		var inputid = "${inputid}";
+			
+		if(result == 'loginFailed'){
+			loginfalse = document.getElementById("loginfalse");
+	        loginfalse.style.display="block";
+	        loginform.adid.value=inputid;
+	        loginform.adpwd.focus();
+		}
 		
 		var isLogin = "${isLogin}";
 		var isAdminLogin = "${isAdminLogin}";

@@ -3,6 +3,7 @@ package carezone.checklist.DAO;
 import java.util.List;
 
 import carezone.checklist.VO.CheckVO;
+import carezone.member.vo.FamilyVO;
 
 public interface CheckDAO {
 	
@@ -10,4 +11,6 @@ public interface CheckDAO {
 	
 	public int changeCheckType(CheckVO checkVO) throws Exception;
 	
+	public List<FamilyVO> getHomechecklist(String mno) throws Exception;
+
 }

@@ -140,7 +140,7 @@
 	                        <div class="card hos-service-box mt-2">
 			                  	<ul class="list-group list-group-flush">
 								    <li class="list-group-item a-mvcinsertform"><a class="vcc-alink" href="${contextPath}/reservation/getreservationForm.do">예방접종 예약</a></li>
-								    <li class="list-group-item a-mvclistform active"><a class="vcc-alink" href="${contextPath}/reservation/getlistMyReservations.do">예방접종 관리</a></li>
+								    <li class="list-group-item a-mvclistform active"><a class="vcc-alink" href="${contextPath}/reservation/getlistMyReservations.do">예방접종 예약 관리</a></li>
 								    <li class="list-group-item a-hopitalform"><a class="vcc-alink" href="${contextPath}/hospital/getlistHospital.do">지정 의료기관 찾기</a></li>
 							   </ul>
 		                   </div>

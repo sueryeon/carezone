@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import carezone.checklist.DAO.CheckDAO;
 import carezone.checklist.VO.CheckVO;
+import carezone.member.vo.FamilyVO;
 
 @Service("checklistService")
 public class CheckServiceImpl implements CheckService {
@@ -32,6 +33,17 @@ public class CheckServiceImpl implements CheckService {
 		int listType=checkDAO.changeCheckType(checkVO);
 		
 		return listType;
+	}
+
+	@Override
+	public List<FamilyVO> getHomechecklist(String mno) throws Exception {
+		
+
+		System.out.println("-------------------체크리스트 서비스 : getHomechecklist-------------------");
+		
+		List<FamilyVO> familyList=checkDAO.getHomechecklist(mno);
+		
+		return familyList;
 	}
 	
 	

@@ -109,6 +109,7 @@ window.onload=function(){
 		mypagebox.style.display="block";
 		member_menu.style.display="block";
 		admin_menu.style.display="none";
+		fn_check_family();
 	}
 	else if((isAdminLogin=="true"&&isLogin=="false")||(isAdminLogin=="true"&&isLogin.length==0)){
 		loginsbox.style.display="none";
@@ -131,6 +132,79 @@ window.onload=function(){
 }
 
 //-----------------------------------------------------------------------------------------------------
+    function fn_check_family(){
+	   var mno="${memVO.mno}";
+	   var mid="${memVO.mid}";
+	   var mname="${memVO.mname}";
+	   var fmvo="";
+	   var contents="";
+	   
+	   $.ajax({
+	         type: "post",
+	         url: "${contextPath}/checklist/getHomechecklist.do",
+	         data:{
+	         'mno':mno
+	         },
+	         success: function(data) {
+	            console.log(data);
+	               contents+='<button class="nav-link active p-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#';
+	               contents+=mid+mname+'" type="button" role="tab" aria-selected="true">';
+	               contents+='나';
+	               contents+='</button>';
+	               
+	               for(var i=0; i<data.length; i++){
+	               fmvo=data[i];
+	               contents+='<button class="nav-link p-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#';
+	               contents+=mid+fmvo.fname+'" type="button" role="tab" aria-selected="false">';
+	               contents+=fmvo.fname;
+	               contents+='</button>';
+	               
+	               console.log(contents);
+	            }
+	            $("#nav-tab").html(contents);
+	         },
+	         error: function(xhr, status, error) {
+	            console.log("실패");
+	         }
+	      });
+	}
+	//여기까지
+	
+	//가족이름에 맞는 체크리스트내용 들고오기
+	function fn_check_detail(name){
+	   
+	   var id="${memVO.mid}";
+	   var name=name;
+	   var contents="";
+	   var ckvo="";
+	   
+	   $.ajax({
+	      type: "post",
+	      url: "${contextPath}/checklist/getdetailcklist.do",
+	      data:{
+	      'ckid':id,
+	      'ckname':name
+	      },
+	      success: function(data) {
+	         console.log(data);
+	         for(var i=0; i<data.length; i++){
+	            ckvo=data[i];
+	            
+	            contents+='<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">';
+	            contents+='<ul>'
+	         
+	            contents+='</div>';
+	            
+	            
+	         }
+	         $("#nav-tabContent").html(contents);
+	      },
+	      error: function(xhr, status, error) {
+	         console.log("실패");
+	      }
+	   });
+	}
+    
     //게시판 최신글
     function fn_topBoardList(){
     	$.ajax({

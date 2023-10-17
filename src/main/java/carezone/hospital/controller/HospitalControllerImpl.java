@@ -44,7 +44,7 @@ public class HospitalControllerImpl implements HospitalController {
 	private String viewName=null;
 	private HospitalVO hosVO;
 	//private String HOSPITAL_REPO="C:\\hospital";
-	private String HOSPITAL_REPO="D:\\";
+	//private String HOSPITAL_REPO="D:\\";
 	@Override
 	@RequestMapping(value={"/gethospitalForm.do"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView gethospitalForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -71,7 +71,7 @@ public class HospitalControllerImpl implements HospitalController {
 		try {
 			
 			System.out.println("=======================병원 컨트롤러 : insertHospital=======================");
-			
+			String HOSPITAL_REPO = multi.getServletContext().getRealPath("/hospital");
 			multi.setCharacterEncoding("UTF-8");
 			String hospitalFile=insert(multi);
 			
@@ -229,8 +229,7 @@ public class HospitalControllerImpl implements HospitalController {
 			hospitalFile=mFile.getOriginalFilename();
 			String baseName = hospitalFile.substring(0, hospitalFile.lastIndexOf('.'));
 	        String extension = hospitalFile.substring(hospitalFile.lastIndexOf('.'));
-			
-			//File file = new File(HOSPITAL_REPO +"\\temp\\" + fileName);
+	        String HOSPITAL_REPO = multi.getServletContext().getRealPath("/hospital");
 			File file = new File(HOSPITAL_REPO +"\\temp\\" + hospitalFile);
 			if(mFile.getSize()!=0){ 
 				

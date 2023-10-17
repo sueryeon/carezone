@@ -42,9 +42,14 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView getAdminLoginForm(@RequestParam(value="result", required = false) String result, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		System.out.println("controller의 관리자 로그인 페이지");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String inputid = (String) request.getParameter("inputid");
+		System.out.println("input id : "+inputid);
 		String viewName = getViewName(request);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result",result);
+		mav.addObject("inputid", inputid);
 		mav.setViewName(viewName);
 		return mav;
 	}
@@ -69,7 +74,9 @@ public class MemberControllerImpl implements MemberController {
 			mav.setViewName("redirect:/");
 		}
 		else {
+			System.out.println("관리자 로그인 실패");
 			reAttr.addAttribute("inputid", adminVO.getAdid());
+			System.out.println("inputid : "+adminVO.getAdid());
 			reAttr.addAttribute("result", "loginFailed"); //로그인 실패시 실패메시지 바로 전달
 			mav.setViewName("redirect:/member/adminLoginForm.do");
 		}

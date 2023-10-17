@@ -38,6 +38,7 @@ public class QnaControllerImpl implements QnaController {
 	
 	private QnaVO qnaVO;
 	private String viewName=null;
+	
 	private String 	QNA_IMG_REPO="c:\\qna\\qna_img";
 	
 	@Override
@@ -69,13 +70,12 @@ public class QnaControllerImpl implements QnaController {
 		multi.setCharacterEncoding("UTF-8");
 		viewName=getViewName(multi);
 		Map<String, Object> qnaMap = new HashMap<String, Object>();
+		String realPath = multi.getServletContext().getRealPath("/qna");	
 		
 		Enumeration enu=multi.getParameterNames();
 		while(enu.hasMoreElements()) {
-			
 			String name=(String) enu.nextElement();
 			String value=multi.getParameter(name);
-			
 			qnaMap.put(name, value);
 		}
 		
