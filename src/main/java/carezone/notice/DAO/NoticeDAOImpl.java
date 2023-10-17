@@ -93,7 +93,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 		
 		System.out.println("――――――――――공지사항 DAO : deleteNotice――――――――――");
 		
-		sqlsession.update("mapper.notice.updateNotice", narticleno);
+		sqlsession.update("mapper.notice.deleteNotice", narticleno);
 
 	}
 

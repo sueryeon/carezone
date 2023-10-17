@@ -1,0 +1,17 @@
+<option value="가야면">가야면</option>
+<option value="가회면">가회면</option>
+<option value="대병면">대병면</option>
+<option value="대양면">대양면</option>
+<option value="덕곡면">덕곡면</option>
+<option value="묘산면">묘산면</option>
+<option value="봉산면">봉산면</option>
+<option value="삼가면">삼가면</option>
+<option value="쌍백면">쌍백면</option>
+<option value="쌍책면">쌍책면</option>
+<option value="야로면">야로면</option>
+<option value="용주면">용주면</option>
+<option value="율곡면">율곡면</option>
+<option value="적중면">적중면</option>
+<option value="청덕면">청덕면</option>
+<option value="초계면">초계면</option>
+<option value="합천읍">합천읍</option>

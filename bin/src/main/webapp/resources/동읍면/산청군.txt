@@ -1,0 +1,11 @@
+<option value="금서면">금서면</option>
+<option value="단성면">단성면</option>
+<option value="산청읍">산청읍</option>
+<option value="삼장면">삼장면</option>
+<option value="생비량면">생비량면</option>
+<option value="생초면">생초면</option>
+<option value="시천면">시천면</option>
+<option value="신등면">신등면</option>
+<option value="신안면">신안면</option>
+<option value="오부면">오부면</option>
+<option value="차황면">차황면</option>

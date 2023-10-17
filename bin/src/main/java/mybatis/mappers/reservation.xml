@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.reservation">
+	
+	<resultMap type="reservationVO" id="reservationResult">
+		<result property="rno" column="rno"/>
+		<result property="rid" column="rid"/>
+		<result property="rname" column="rname"/>
+		<result property="rbirth1" column="rbirth1"/>
+		<result property="rbirth2" column="rbirth2"/>
+		<result property="rphone" column="rphone"/>
+		<result property="rhospital" column="rhospital"/>
+		<result property="rvcc" column="rvcc"/>
+		<result property="rdate" column="rdate"/>
+		<result property="rwritedate" column="rwritedate"/>
+		<result property="rsubname" column="rsubname"/>
+		<result property="rsubbirth1" column="rsubbirth1"/>
+		<result property="rsubphone" column="rsubphone"/>
+	</resultMap>
+	
+	<select id="getReservationForm" resultType="memberVO" parameterType="String">
+		<![CDATA[select mid,mname,mbirth1,mbirth2,mphone from mmember where mid=#{mid}]]>
+	</select>
+	<!-- ====================예약폼가기====================  -->
+	<insert id="insertReservation_self" parameterType="reservationVO">
+		<![CDATA[insert into reservation(rid,rname,rbirth1,rbirth2,rphone,rhospital,rvcc,rdate) values(#{rid},#{rname},#{rbirth1},#{rbirth2},#{rphone},#{rhospital},#{rvcc},#{rdate})]]>
+	</insert>
+	
+	<insert id="insertReservation_family" parameterType="reservationVO">
+		<![CDATA[insert into reservation(rid,rname,rbirth1,rbirth2,rphone,rhospital,rvcc,rdate,rsubname,rsubbirth1,rsubphone) values(#{rid},#{rname},#{rbirth1},#{rbirth2},#{rphone},#{rhospital},#{rvcc},#{rdate},#{rsubname},#{rsubbirth1},#{rsubphone})]]>
+	</insert>
+
+<!-- ====================예약하기====================  -->
+	<select id="getlistReservations" resultMap="reservationResult">
+		<![CDATA[select rno,rid,rhospital,rvcc,rdate,rwritedate from reservation]]>
+	</select>
+<!-- ====================예약리스트 모두 가져오기====================  -->
+
+	<select id="getlistMyReservations" resultMap="reservationResult" parameterType="String">
+		<![CDATA[select r.rno,r.rid,r.rname,r.rhospital,r.rvcc,r.rdate,r.rwritedate,r.rsubname from reservation r inner join mmember m on r.rid=m.mid where m.mid=#{mid} order by r.rwritedate desc]]>
+	</select>
+<!-- ====================특정회원 예약리스트 모두 가져오기====================  -->
+
+	<delete id="deleteReservation" parameterType="int">
+		<![CDATA[delete from reservation where rno=#{rno}]]>
+	</delete>
+<!-- ====================예약 삭제하기====================  -->	
+
+	<select id="findReservation" resultType="ReservationVO" parameterType="int">
+		<![CDATA[select rno,rid,rname,rbirth1,rbirth2,rphone,rhospital,rvcc,rdate from reservation where rno=#{rno}]]>
+	</select>
+<!-- ====================예약 수정폼====================  -->
+
+	<update id="updateReservation" parameterType="reservationVO">
+		<![CDATA[update reservation set rhospital=#{rhospital}, rvcc=#{rvcc}, rdate=#{rdate} where rno=#{rno}]]>
+	</update>
+<!-- ====================예약 수정하기====================  -->
+
+	<select id="getDetailReservation" resultType="ReservationVO" parameterType="int">
+		<![CDATA[select * from reservation where rno=#{rno}]]>
+	</select>
+<!-- ====================예약 상세보기====================  -->
+
+<!--rid,rname,rbirth1,rbirth2,rphone,rdate  -->
+<!--r.rid,r.rname,r.rbirth1,r.rbirth2,r.rphone,r.rdate-->
+</mapper>

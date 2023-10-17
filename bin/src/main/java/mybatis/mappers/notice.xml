@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.notice">
+	
+	<resultMap type="noticeVO" id="noticeResult">
+		<result property="narticleno" column="narticleno"/>
+		<result property="nid" column="nid"/>
+		<result property="ntitle" column="ntitle"/>
+		<result property="ncontent" column="ncontent"/>
+		<result property="nimgfile" column="nimgfile"/>
+		<result property="nwritedate" column="nwritedate"/>
+		<result property="topnotice" column="topnotice"/>
+	</resultMap>
+	
+	<select id="selectNewNarticleno" resultType="Int">
+		<![CDATA[select max(narticleno) from notice]]>
+	</select>
+	
+	<insert id="insertNotice" parameterType="java.util.Map">
+		<![CDATA[insert into notice(narticleno,nid,ntitle,ncontent,nimgfile) values(#{narticleno},#{nid},#{ntitle},#{ncontent},#{nimgfile})]]>
+	</insert>
+	
+	<!--
+	<select id="getlistNotice" resultMap="noticeResult">
+		<![CDATA[select narticleno,nid,ntitle,nwritedate from notice order by nwritedate desc]]>
+	</select>
+	  -->
+	
+	
+	<select id="getDetailNotice" resultType="noticeVO" parameterType="Int">
+		<![CDATA[select narticleno,nid,ntitle,ncontent,nimgfile,nwritedate from notice where narticleno=#{narticleno}]]>
+	</select>
+	
+	<select id="updateNoticeForm" resultType="noticeVO" parameterType="Int">
+		<![CDATA[select * from notice where narticleno=#{narticleno}]]>
+	</select>
+	
+	<update id="updateNotice" parameterType="java.util.Map">
+		<![CDATA[update notice set ntitle=#{ntitle},ncontent=#{ncontent}
+		 ]]>
+	 	<if test="qimgfile != null and qimgfile != ''">
+		, nimgfile=#{nimgfile}
+		</if>
+		where narticleno=#{narticleno}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="Int">
+		<![CDATA[delete from notice where narticleno=#{narticleno}]]>
+	</delete>
+
+	<select id="getlistNotice" resultMap="noticeResult" parameterType="java.util.Map">
+		<![CDATA[select * from (select * from notice limit #{offset}, #{pagesize}) as subquery order by narticleno desc]]>
+	</select>
+
+	<select id="getAlltotalArticels" resultType="Int">
+		<![CDATA[select count(narticleno) from notice]]>
+	</select>
+	
+	<select id="noticetopthree" resultMap="noticeResult" >
+		<![CDATA[select narticleno,ntitle,nwritedate from notice ORDER BY nwritedate DESC LIMIT 3;]]>
+	</select>
+	
+	
+	
+</mapper>

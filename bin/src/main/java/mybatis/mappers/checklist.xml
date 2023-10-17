@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.checklist">
+	
+	<resultMap type="CheckVO" id="checkResult">
+		<result property="ckno" column="ckno"/>
+		<result property="ckid" column="ckid"/>
+		<result property="ckname" column="ckname"/>
+		<result property="ckhosname" column="ckhosname"/>
+		<result property="ckvccname" column="ckvccname"/>
+		<result property="ckrdate" column="ckrdate"/>
+		<result property="ckdescription" column="ckdescription"/>
+		<result property="ckboolean" column="ckboolean"/>
+	</resultMap>
+	
+	<insert id="insertChecklist" parameterType="reservationVO">
+		<![CDATA[insert into checklist(ckid,ckname,ckhosname,ckvccname,ckrdate) values(#{rid},#{rname},#{rhospital},#{rvcc},#{rdate})]]>
+	</insert>
+
+	<select id="getChecklist" parameterType="String" resultMap="checkResult">
+		<![CDATA[select * from checklist where ckid=#{mid}]]>
+	</select>
+	
+	<update id="updateCheckType" parameterType="CheckVO">
+		<![CDATA[update checklist set ckboolean=#{ckboolean} where ckno=#{ckno} and ckid=#{ckid}]]>
+	</update>
+	
+	<select id="selectCheckType" parameterType="CheckVO" resultType="Int">
+		<![CDATA[select ckboolean from checklist where ckid=#{ckid} and ckno=#{ckno}]]>
+	</select>
+</mapper>

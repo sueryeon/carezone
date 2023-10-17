@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="carezone.reservation.VO.ReservationVO" alias="reservationVO"/>
+		<!-- ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 예약 -->
+		
+		<typeAlias type="carezone.member.vo.MemberVO" alias="memberVO"/>
+		<typeAlias type="carezone.member.vo.FamilyVO" alias="familyVO"/>
+		<typeAlias type="carezone.member.vo.AdminVO" alias="adminVO"/>
+		<!-- ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――회원 및 관리자 -->
+		
+		<typeAlias type="carezone.qna.VO.QnaVO" alias="qnaVO"/>
+		<typeAlias type="carezone.qna.VO.ReplyqnaVO" alias="reqnaVO"/>
+		<typeAlias type="carezone.board.vo.BoardVO" alias="boardVO"/>
+		<typeAlias type="carezone.board.vo.BReplyVO" alias="breplyVO"/>
+		<typeAlias type="carezone.notice.VO.NoticeVO" alias="noticeVO"/>
+		<!-- ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――게시판 류 -->
+	    
+	    <typeAlias type="carezone.hospital.VO.HospitalVO" alias="hosVO"/>
+	    <!-- ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――병원조회 및 예약과 이어짐.-->
+	    
+	    <typeAlias type="carezone.hoscart.vo.HosCartVO" alias="hoscartVO"/>
+	  	<!-- ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――장바구니-->
+	  	
+	    <typeAlias type="carezone.checklist.VO.CheckVO" alias="CheckVO"/>
+	    <!-- ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――체크리스트-->
+	</typeAliases>
+	
+</configuration>

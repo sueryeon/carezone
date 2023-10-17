@@ -1,0 +1,117 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body{
+    width: 100%;
+    
+}
+
+
+.wrap-container{
+    width: 70%;
+    margin: 0 auto;
+}
+
+a{
+	text-decoration:none !important;
+}
+
+
+.btn-primary{
+   background-color:#3f78bf !important;
+   border-color:#3f78bf !important;
+}
+
+.btn-primary a{
+	text-decoration: none;
+	color: white;
+}
+
+/*왼쪽*/
+.boardleft-box{
+   width:100%;
+   min-width: 165px;
+   align-items: flex-start; 
+   border-radius: 10px;
+}
+/*서비스*/
+.boardservice-box{
+   min-width: 120px;
+}
+
+.boardservice-box div{
+   width:100%;
+   height:auto;
+}
+
+.boardservice-box ul li{
+   width:100%;
+   height:30px;
+   background-color: white;
+   text-decoration: none;
+   text-align: left;
+    display: flex;
+    padding-bottom:5px;
+    font-size: 14px;
+}
+
+.boardservice-box .boardservice{
+   width:100%;
+   height: 120px;
+   color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #003966;
+}
+.a-boardform {
+    background-color: #fff; /* 초기 백그라운드 색상 */
+	height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.a-boardform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-boardform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+.a-qnaform {
+    background-color: #fff; /* 다른 링크의 초기 백그라운드 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-qnaform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-qnaform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+.board-alink{
+	text-decoration: none;
+	width:100%;
+}

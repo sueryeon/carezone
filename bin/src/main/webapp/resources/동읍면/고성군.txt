@@ -1,0 +1,14 @@
+<option value="개천면">개천면</option>
+<option value="거류면">거류면</option>
+<option value="고성읍">고성읍</option>
+<option value="구만면">구만면</option>
+<option value="대가면">대가면</option>
+<option value="동해면">동해면</option>
+<option value="마암면">마암면</option>
+<option value="삼산면">삼산면</option>
+<option value="상리면">상리면</option>
+<option value="영오면">영오면</option>
+<option value="영현면">영현면</option>
+<option value="하이면">하이면</option>
+<option value="하일면">하일면</option>
+<option value="회화면">회화면</option>

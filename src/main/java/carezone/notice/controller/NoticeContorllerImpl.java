@@ -366,8 +366,6 @@ public class NoticeContorllerImpl implements NoticeController {
 		
 		List topthree=noticeService.noticetopthree();
 		
-		NoticeVO notice1=(NoticeVO) topthree.get(1);
-		System.out.println(notice1.getNwritedate());
 		
 		return topthree;
 	}

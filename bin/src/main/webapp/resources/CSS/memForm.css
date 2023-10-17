@@ -1,0 +1,260 @@
+@charset "UTF-8";
+.left-box{
+   width:100%;
+   min-width: 165px;
+   height:100%;
+   align-items: flex-start; 
+   border-radius: 10px;
+}
+/*서비스*/
+.service-box{
+   min-width: 120px;
+}
+
+.service-box .mem-service{
+   width:100%;
+   height: 120px;
+   color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #003966;
+}
+
+.a-signform {
+    background-color: #fff; /* 초기 백그라운드 색상 */
+	height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.a-signform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-signform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+
+.a-adminform {
+    background-color: #fff; /* 초기 백그라운드 색상 */
+	height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.a-adminform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-adminform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+
+.a-loginform {
+    background-color: #fff; /* 다른 링크의 초기 백그라운드 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-loginform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-loginform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+
+.a-findform {
+    background-color: #fff; /* 다른 링크의 초기 백그라운드 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-findform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.a-findform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+
+.list-alink{
+	text-decoration: none;
+	width:100%;
+}
+
+.service-box div{
+   width:100%;
+   height:auto;
+}
+
+.service-box ul li{
+   width:100%;
+   height:30px;
+   background-color: white;
+   text-decoration: none;
+   text-align: left;
+    display: flex;
+    padding-bottom:5px;
+    font-size: 14px;
+}
+
+/*box의 right*/
+
+.agree-title{
+	width:100%;
+	border-bottom: 2px solid #003966;
+}
+
+.agree-subtitle{
+	align-items: center;
+}
+.agree-subtitle h6{
+	margin:0;
+	margin-left: 5px;
+}
+
+.right-box{
+   width: 100%;
+   min-width: 630px;
+   font-size: 12px;
+}
+/*약관동의*/
+
+.agcheck{
+    font-weight: bold;
+}
+
+.agree_box{
+    margin: 5px 0 5px 0;
+    max-height: 150px;
+    overflow-y: scroll;
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+}
+.agree-radio{
+	align-items: center;
+	margin-right: 5px;
+}
+
+.radio-inline1{
+	display:flex;
+	align-items: center;
+}
+.radio-inline1 #agree-clause02{
+	margin-left: 5px;
+}
+
+.radio-inline2{
+	display:flex;
+	align-items: center;
+}
+.radio-inline2 #agree-clause04{
+	margin-left: 5px;
+}
+
+.red{
+	color: #e51e3e !important;
+}
+
+.use-scroll h5{
+	font-family: 'Spoqa Han Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.ag-title{
+	margin-right: 40px;
+}
+
+.form-sign{
+   width:100%;
+   margin: 0 auto;
+}
+
+/*가입 form*/
+#signupForm{
+	width: 100%;
+    margin: 0 auto;
+}
+
+.idcheck-containier{
+	padding:0px;
+}
+
+.idinput-box input{
+	width:150px;
+	margin-right: 26px;
+}
+#memail2{
+	margin-right: 26px;
+}
+.checkalert{
+	color: #e51e3e !important;
+	text-align: left;
+}
+
+
+.subtitle-label{
+	text-align: left;
+}
+
+.alert-danger {
+	height:30px;
+	display:none;
+	margin:0;
+	padding:0;
+}
+
+.alert-danger > div {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* 텍스트를 가운데 정렬 */
+}
+.birthinput1{
+	margin-right: 10px;
+}
+.birthinput2{
+	margin-left: 10px;
+}
+.birthinput2 input{
+	width: 40px;
+	margin-right: 5px;
+}
+.phoneinput-box input{
+	margin-right: 26px;
+}
+
+.emailinput1{
+	margin-right: 26px;
+}

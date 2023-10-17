@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->	
+<mapper namespace="mapper.member">
+	<!-- 회원 resultMap -->
+ 	<resultMap type="memberVO" id="memResult">
+ 		<result property="mno" column="mno"/>
+ 		<result property="mid" column="mid"/>
+		<result property="mpwd" column="mpwd"/>
+		<result property="mname" column="mname"/>
+		<result property="mbirth1" column="mbirth1"/>
+		<result property="mbirth2" column="mbirth2"/>
+		<result property="memail1" column="memail1"/>
+		<result property="memail2" column="memail2"/>
+		<result property="mphone" column="mphone"/>
+		<result property="maddr" column="maddr"/>
+ 	</resultMap>
+ 	
+ 	<!-- 관리자 resultMap -->
+ 	<resultMap type="adminVO" id="adResult">
+ 		<result property="adno" column="adno"/>
+ 		<result property="adid" column="adid"/>
+ 		<result property="adpwd" column="adpwd"/>
+ 		<result property="adname" column="adname"/>
+ 		<result property="adbirth" column="adbirth"/>
+ 	</resultMap>
+ 	
+ 	<!-- 가족 resultMap -->
+ 	<resultMap type="familyVO" id="famResult">
+ 		<result property="fid" column="fid"/>
+ 		<result property="fno" column="fno"/>
+		<result property="fname" column="fname"/>
+		<result property="fbirth1" column="fbirth1"/>
+		<result property="fphone" column="fphone"/>
+		<result property="faddr" column="faddr"/>
+ 	</resultMap>
+ 	
+ 	<!-- 게시판 resultMap -->
+ 	<resultMap type="boardVO" id="boardResult">
+ 		<result property="barticleNo" column="barticleNo"/>
+		<result property="bid" column="bid"/>
+		<result property="btitle" column="btitle"/>
+		<result property="bcontenct" column="bcontenct"/>
+		<result property="bimgFile" column="bimgFile"/>
+		<result property="bwriteDate" column="bwriteDate"/>
+ 	</resultMap>
+ 	
+ 	<!-- 댓글 resultMap -->
+ 	 <resultMap type="boardVO" id="breplyResult">
+ 		<result property="brarticleNo" column="brarticleNo"/>
+		<result property="brparentNo" column="brparentNo"/>
+		<result property="brid" column="brid"/>
+		<result property="brcontent" column="brcontent"/>
+		<result property="brwriteDate" column="brwriteDate"/>
+ 	</resultMap>
+ 	
+ 	<!-- 관리자 로그인 -->
+ 	<select id="adminLogin" parameterType="adminVO" resultType="adminVO">
+ 		<![CDATA[select * from adtable where adid=#{adid} and adpwd=#{adpwd}]]>
+ 	</select>
+ 	
+ 	<!-- 회원 로그인 -->
+ 	<select id="loginMember" parameterType="memberVO" resultType="memberVO">
+ 		<![CDATA[select * from mmember where mid=#{mid} and mpwd=#{mpwd}]]>
+ 	</select>
+ 	
+ 	<!-- 아이디 중복 조회 -->
+	<select id="checkId" parameterType="String" resultType="String">
+		 <![CDATA[select count(mid)
+		 		from mmember
+		 		where mid = #{mid}]]>
+	</select>
+	
+	<!-- 휴대폰 중복 조회 -->
+	<select id="checkPhone" parameterType="String" resultType="String">
+		 <![CDATA[select count(mphone)
+		 		from mmember
+		 		where mphone = #{mphone}]]>
+	</select>
+ 	
+ 	<!-- 전체 컬럼 조회 -->
+ 	<select id="selectAllMemberList" resultMap="memResult">
+		<![CDATA[select * from mmember order by mno desc]]>
+	</select>
+	
+	<!-- 회원 insert -->
+	<select id="insertMember" parameterType="memberVO">
+		<![CDATA[insert into mmember(mid, mpwd, mname, mbirth1, mbirth2, memail1, memail2, mphone, maddr)
+		 values(#{mid}, #{mpwd}, #{mname}, #{mbirth1}, #{mbirth2}, #{memail1}, #{memail2}, #{mphone}, #{maddr})]]>
+	</select>
+	
+	<!-- 회원 1명 조회 -->
+	<select id="findMember" resultType="memberVO" parameterType="String">
+		<![CDATA[select * from mmember where mid = #{mid}]]>
+	</select>
+	
+	<!-- 관리자 1명 조회 -->
+	<select id="findAdmin" resultType="adminVO" parameterType="String">
+		<![CDATA[select * from adtable where adid = #{adid}]]>
+	</select>
+
+	
+	<!-- 회원 update -->
+	<update id="updateMember" parameterType="memberVO">
+		<![CDATA[update mmember set mpwd=#{mpwd}, mname=#{mname}, memail1=#{memail1}, memail2=#{memail2}, mphone=#{mphone}, maddr=#{maddr} where mid=#{mid}]]>
+	</update>
+	
+	<!-- 관리자 update -->
+	<update id="updateAdmin" parameterType="memberVO">
+		<![CDATA[update adtable set adpwd=#{adpwd}, adname=#{adname} where adid=#{adid}]]>
+	</update>
+	
+	<!-- 회원 delete -->
+	<delete id="deleteMember"  parameterType="String">
+   		<![CDATA[delete from  mmember where mid=#{mid}]]>      
+  	</delete>
+  	
+  	<!-- 회원 아이디 찾기 -->
+  	<select id="findMyId" parameterType="memberVO" resultType="String">
+  		<![CDATA[SELECT mid FROM mmember WHERE mname=#{mname} AND memail1=#{memail1} AND memail2=#{memail2}]]>
+  	</select>
+  	
+  	<!-- 회원 비밀번호 찾기 -->
+  	<select id="findMyPwd" parameterType="memberVO" resultType="Int">
+  		<![CDATA[SELECT count(mpwd) FROM mmember WHERE mname=#{mname} AND mid=#{mid} AND memail1=#{memail1} AND memail2=#{memail2}]]>
+  	</select>
+  	
+  	<!-- 회원 비밀번호 재설정 -->
+  	<update id="newMyPwd" parameterType="memberVO">
+  		<![CDATA[update mmember set mpwd=#{mpwd} where memail1=#{memail1} and memail2=#{memail2}]]>
+  	</update>
+  	
+  	<!-- 회원 본인인증 -->
+  	<select id="memcheck" parameterType="memberVO" resultType="String">
+  		<![CDATA[select count(*) from mmember where mname=#{mname} and memail1=#{memail1} and memail2=#{memail2}]]>
+  	</select>
+  	
+  	
+  	<!-- 회원의 가족 insert -->
+  	<select id="insertFamilyMember" parameterType="familyVO">
+  		<![CDATA[insert into fmember(fno, fname, fbirth1, fphone, faddr)
+		 values(#{fno}, #{fname}, #{fbirth1}, #{fphone}, #{faddr})]]>
+	</select>
+	
+	<!-- 회원 가족 휴대폰 중복 select -->
+	<select id="checkfPhone" parameterType="String" resultType="String">
+		 <![CDATA[select count(fphone) from fmember
+		 		where fphone = #{fphone}]]>
+	</select>
+	
+	<!-- 회원의 전체 가족 select -->
+	<select id="selectAllFamilyList" parameterType="Int" resultMap = "famResult" >
+		<![CDATA[select * from fmember where fno=#{fno} order by fid]]>
+	</select>
+	
+	
+	<!-- 회원의 가족 1명 조회 -->
+	<select id="findFamilyMember" parameterType="Int" resultType="familyVO">
+		<![CDATA[select * from fmember where fid=#{fid}]]>
+	</select>
+	
+	<!-- 회원의 가족 1명 수정 -->
+	<update id="updateFamilyMember" parameterType="familyVO">
+		<![CDATA[update fmember set fname=#{fname}, fphone=#{fphone}, faddr=#{faddr} where fid=#{fid}]]>
+	</update>
+	
+	<!-- 회원의 가족 1명 삭제 -->
+	<delete id="deleteFamilyMember" parameterType="Int">
+		<![CDATA[delete from fmember where fid=#{fid}]]>
+	</delete>
+</mapper>

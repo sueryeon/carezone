@@ -1,0 +1,249 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body{
+    width: 100%;
+    
+}
+
+
+.wrap-container{
+    width: 70%;
+    margin: 0 auto;
+}
+
+a{
+	text-decoration:none !important;
+}
+
+.btn-primary{
+   background-color:#3f78bf !important;
+   border-color:#3f78bf !important;
+}
+
+.btn-primary a{
+	text-decoration: none;
+	color: white;
+}
+
+.loginform-wrap-container{
+     width:70%;
+     /*height:100%;*/
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+.loginform-leftwrap-container{   
+   width:20%;
+   /*height:100%;*/
+}
+.loginleft-box{
+   width:100%;
+   min-width: 165px;
+   /*height:100%;*/
+   align-items: flex-start; 
+   border-radius: 10px;
+}
+/*서비스*/
+.loginservice-box{
+   min-width: 120px;
+}
+
+.loginservice-box .loginmem-service{
+   width:100%;
+   height: 120px;
+   color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #003966;
+}
+
+
+.al-signform {
+    background-color: #fff; /* 초기 백그라운드 색상 */
+	height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.al-signform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.al-signform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+
+.al-loginform {
+    background-color: #fff; /* 다른 링크의 초기 백그라운드 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.al-loginform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.al-loginform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+.al-adminform {
+    background-color: #fff; /* 초기 백그라운드 색상 */
+	height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.al-adminform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.al-adminform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+.al-findform {
+    background-color: #fff; /* 다른 링크의 초기 백그라운드 색상 */
+    height:40px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.al-findform.active {
+    background-color: #3f78bf !important; /* 활성화된 경우의 백그라운드 색상 */
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+    height:40px !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.al-findform.active a {
+    color: #fff; /* 활성화된 경우의 텍스트 색상 */
+}
+
+.list-link{
+	text-decoration: none;
+	width:100%;
+}
+
+
+.loginservice-box div{
+   width:100%;
+   height:auto;
+}
+
+.loginservice-box ul li{
+   width:100%;
+   height:30px;
+   background-color: white;
+   text-decoration: none;
+   text-align: left;
+    display: flex;
+    padding-bottom:5px;
+    font-size: 14px;
+}
+
+/*오른쪽*/
+
+.login-title{
+	width:100%;
+	border-bottom: 2px solid #003966;
+}
+.right-box{
+   width: 100%;
+   min-width: 630px;
+   font-size: 12px;
+}
+.form-signin{
+   width:60%;
+   /*margin: 20px auto;*/
+}
+
+.login-inputbox{
+   width:100%;
+}
+
+.login-inputbox .login-idpwd-box{
+   width:60%;
+   height:100%;
+}
+
+.login-inputbox .login-button{
+   width:40%;
+}
+
+.login-button button{
+   height:100%;
+}
+
+.service-box{
+   width:100%;
+}
+
+.service-box .mem-service{
+   width:100%;
+   height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd;
+}
+
+.service-box .mem-service p{
+   text-align: center;
+    margin-top: 95px;
+   color:white;
+   width:100%;
+   height:100%;
+}
+
+
+.memservice-box{
+	margin-top: 10px;
+}
+
+.service-box div{
+   width:100%;
+   height:auto;
+}
+
+.service-box div a{
+   width:100%;
+   height:30px;
+   background-color: white;
+   text-decoration: none;
+   text-align: left;
+    display: inline-block;
+    padding-bottom:5px;
+    font-size: 14px;
+}

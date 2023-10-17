@@ -1,0 +1,80 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body{
+    width: 100%;
+    
+}
+
+
+.wrap-container{
+    width: 70%;
+    margin: 0 auto;
+}
+
+a{
+	text-decoration:none !important;
+}
+
+
+.btn-primary{
+   background-color:#3f78bf !important;
+   border-color:#3f78bf !important;
+}
+
+.btn-primary a{
+	text-decoration: none;
+	color: white;
+}
+
+/*왼쪽*/
+
+.mypgleft-box{
+   width:100%;
+   min-width: 165px;
+   align-items: flex-start; 
+   border-radius: 10px;
+}
+/*서비스*/
+.mypgservice-box{
+   min-width: 120px;
+}
+
+.mypgservice-box div{
+   width:100%;
+}
+
+.mypg-service-box ul li{
+   width:100%;
+   background-color: white;
+   text-decoration: none;
+   text-align: left;
+    display: flex;
+    padding-bottom:5px;
+    font-size: 14px;
+}
+
+.mypgservice-box .mypgservice{
+   width:100%;
+   height: 120px;
+   color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #003966;
+}
+
+.list-group-item.active{
+	background-color: #3f78bf !important;
+	font-weight: bold;
+}
+
+.table-primary{
+	background-color: rgb(255 213 102) !important;
+}
