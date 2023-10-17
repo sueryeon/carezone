@@ -177,19 +177,6 @@ public class MemberControllerImpl implements MemberController {
 				mav.setViewName("redirect:/member/loginForm.do");
 			}
 		}
-		
-		/*
-		if(memVO!=null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("memVO", memVO);
-			session.setAttribute("isLogin", true);
-			mav.setViewName("redirect:/");
-		}
-		else {
-			reAttr.addAttribute("inputid", memberVO.getMid());
-			reAttr.addAttribute("result", "loginFailed"); //로그인 실패시 실패메시지 바로 전달
-			mav.setViewName("redirect:/member/loginForm.do");
-		}*/
 		return mav;
 	}
 
@@ -580,7 +567,7 @@ public class MemberControllerImpl implements MemberController {
 	      
 	      if((ajax==null&&_mno!=null)||(ajax==null&&_mno==null)) {
 	         
-	         System.out.println("주희가 만든 가족리스트불러오기.");
+	         //System.out.println("주희가 만든 가족리스트불러오기.");
 	         HttpSession session = request.getSession();
 	         MemberVO memVO = (MemberVO) session.getAttribute("memVO");
 	         
@@ -654,18 +641,6 @@ public class MemberControllerImpl implements MemberController {
 			System.out.println("회원 없음");
 			return null;
 		}
-		
-		/*
-		int fno = (Integer.parseInt(request.getParameter("fno")));
-		String fname = request.getParameter("fname");
-		String fbirth1 = request.getParameter("fbirth1");
-		String fphone = request.getParameter("fphone");
-		String faddr = request.getParameter("faddr");
-		FamilyVO familyVO = new FamilyVO(fno,fname,fbirth1,fphone,faddr);
-		System.out.println("fno = mno : "+fno);
-		int result = memberService.insertFamilyMember(familyVO);
-		
-		ModelAndView mav = new ModelAndView("redirect:/member/findMember.do?mid="+mid);*/
 	}
 	
 	
