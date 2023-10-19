@@ -49,12 +49,40 @@ window.onload=function(){
 		memlist.style.display="none";
 		adlist.style.display="block";
 		hoslist.style.display="block";
+		
+		fn_upload_list();
 	}
 	else{
 		member_menu.style.display="block";
 		admin_menu.style.display="none";
 	}
 
+}
+
+function fn_upload_list(){
+	var contents="";
+	var uploadvo="";
+	$.ajax({
+		url:"${contextPath}/hospital/getuploadlist.do",
+		type:"post",
+		success:function(data,textStatus){
+			
+			console.log(data);
+			if(data.length!=0){
+				console.log(data);
+				for(var i=0; i<data.length; i++){
+					uploadvo=data[i];
+					contents+="<tr><td class='col-sm-9' scope='col'>"+uploadvo.filename+"</td>";
+					contents+="<td class='col-sm-9' scope='col'>"+uploadvo.filedate+"</td><tr>";
+				}
+				
+				$("#tbody").html(contents);
+				
+			}
+		},
+		error:function(data,textStatus){},
+		complete:function(data,textStatus){}
+	});	
 }
 </script>
 </head>
@@ -120,6 +148,21 @@ window.onload=function(){
 								</div>
 								<input type="submit" value="올리기" class="btn btn-primary"><br>
 							</form>
+							<div class="text-center">
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="col-sm-9" scope="col">파일명</th>
+											<th class="col-sm-3" scope="col">업로드된 날짜</th>
+										</tr>
+									</thead>
+									<tbody id="tbody">
+										<tr>
+											<td colspan=6 >업로드된 파일이 없습니다.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

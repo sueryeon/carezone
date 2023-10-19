@@ -16,7 +16,11 @@ PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 		<result property="ckboolean" column="ckboolean"/>
 	</resultMap>
 	
-	<insert id="insertChecklist" parameterType="reservationVO">
+	<insert id="insertChecklist_family" parameterType="reservationVO">
+		<![CDATA[insert into checklist(ckid,ckname,ckhosname,ckvccname,ckrdate) values(#{rid},#{rsubname},#{rhospital},#{rvcc},#{rdate})]]>
+	</insert>
+	
+	<insert id="insertChecklist_self" parameterType="reservationVO">
 		<![CDATA[insert into checklist(ckid,ckname,ckhosname,ckvccname,ckrdate) values(#{rid},#{rname},#{rhospital},#{rvcc},#{rdate})]]>
 	</insert>
 

@@ -37,10 +37,12 @@ public class ReservationDAOImpl implements ReservationDAO {
 		
 		String rsubname=rsvVO.getRsubname();
 		if(rsubname!=null) {
-			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO);
+			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO); //가족 예약 추가
+			sqlsession.insert("mapper.checklist.insertChecklist_family", rsvVO); //가족 체크리스트 추가
 		}
 		else {
-			sqlsession.insert("mapper.reservation.insertReservation_self", rsvVO);
+			sqlsession.insert("mapper.reservation.insertReservation_self", rsvVO); //본인 예약 추가
+			sqlsession.insert("mapper.checklist.insertChecklist_self", rsvVO); //본인 체크리스트 추가
 		}
 		
 		sqlsession.update("mapper.hospital.updateVccquantity",hosno);

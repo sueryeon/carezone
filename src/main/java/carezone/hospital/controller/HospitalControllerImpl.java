@@ -6,8 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +35,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import carezone.hospital.VO.HospitalVO;
+import carezone.hospital.VO.uploadVO;
 import carezone.hospital.service.HospitalService;
 
 
@@ -74,8 +78,10 @@ public class HospitalControllerImpl implements HospitalController {
 			String HOSPITAL_REPO = multi.getServletContext().getRealPath("/hospital");
 			multi.setCharacterEncoding("UTF-8");
 			String hospitalFile=insert(multi);
-			
-            FileInputStream excelFile = new FileInputStream(new File(HOSPITAL_REPO +"\\temp\\"+hospitalFile));
+			//HOSPITAL_REPO + fileSeparator + "temp" + fileSeparator + hospitalFile 맥북용
+			//HOSPITAL_REPO +"\\temp\\"+hospitalFile 윈도우용
+			String fileSeparator = File.separator;
+            FileInputStream excelFile = new FileInputStream(new File(HOSPITAL_REPO + fileSeparator + "temp" + fileSeparator + hospitalFile));
             System.out.println(excelFile);
             
             HSSFWorkbook workbook = new HSSFWorkbook(excelFile);
@@ -230,7 +236,11 @@ public class HospitalControllerImpl implements HospitalController {
 			String baseName = hospitalFile.substring(0, hospitalFile.lastIndexOf('.'));
 	        String extension = hospitalFile.substring(hospitalFile.lastIndexOf('.'));
 	        String HOSPITAL_REPO = multi.getServletContext().getRealPath("/hospital");
-			File file = new File(HOSPITAL_REPO +"\\temp\\" + hospitalFile);
+			//File file = new File(HOSPITAL_REPO +"\\temp\\" + hospitalFile); //윈도우
+	        String fileSeparator = File.separator;
+			File file = new File(HOSPITAL_REPO + fileSeparator + "temp" + fileSeparator + hospitalFile); //맥북
+			
+			System.out.println("경로함보자"+HOSPITAL_REPO + fileSeparator + "temp" + fileSeparator + hospitalFile);
 			if(mFile.getSize()!=0){ 
 				
 				if(!file.exists()){ 
@@ -242,7 +252,7 @@ public class HospitalControllerImpl implements HospitalController {
 
 					hospitalFile = baseName+"("+count+")"+extension;
 		            count++;
-		            mFile.transferTo(new File(HOSPITAL_REPO+"\\temp\\"+hospitalFile));
+		            mFile.transferTo(new File(HOSPITAL_REPO + fileSeparator + "temp" + fileSeparator + hospitalFile));
 			            
 				}
 			}
@@ -488,5 +498,39 @@ public class HospitalControllerImpl implements HospitalController {
 		return fileName;
 	}
 
-
+	@ResponseBody
+	@RequestMapping(value={"/getuploadlist.do"}, method= {RequestMethod.GET, RequestMethod.POST},produces= {MediaType.APPLICATION_JSON_VALUE})
+	public List getuploadlist(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		System.out.println("병원컨트롤러 getuploadlist ");
+		
+		String save=request.getServletContext().getRealPath("/hospital");
+		System.out.println("저장된경로 : "+save);
+		
+		File uploadDir = new File(save+"/temp");
+		if(uploadDir.exists()) {
+			uploadDir.mkdirs();
+		}
+        File[] uploadedFiles = uploadDir.listFiles();
+        System.out.println("가져온파일들 길 : "+uploadedFiles.length);
+		List uploadList=new ArrayList();
+		
+		if(uploadedFiles!=null) {
+			for(File file : uploadedFiles) {
+				String filename=file.getName();
+				Date filedate=new Date(file.lastModified());
+				System.out.println("파일이름 :"+filename);
+				System.out.println("파일날짜 :"+filedate);
+				
+				uploadVO vo=new uploadVO(filename,filedate);
+				uploadList.add(vo);
+			}
+			return uploadList;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	
 }

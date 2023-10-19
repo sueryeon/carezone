@@ -587,8 +587,7 @@ public class MemberControllerImpl implements MemberController {
 	         
 	         System.out.println("예약페이지에서 가족정보 불러오기 메서드");
 	         if(_mno.length()!=0) {
-	        	int mno=Integer.parseInt(_mno);
-		         fno=mno;
+	        	 fno=Integer.parseInt(_mno);
 		         List<FamilyVO> familyList = memberService.getlistFamilyMembers(fno);
 		         System.out.println("서비스 갔다가 옴. 사이즈"+familyList.size());
 		         String json_familyList = gson.toJson(familyList);

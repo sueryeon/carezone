@@ -17,16 +17,16 @@
 <link rel="stylesheet" href="../resources/CSS/reservationForm.css">
 <script>
 
-
+//전역변수모음
 var VO="";
 var fid="";
 var fno="";
 var fname="";
 var fbirth1="";
 var fphone="";
+//여기까지
 
-//--------------------------전역변수모음
-
+//병원 도시리스트가져오는 메서드 여기서부터
 function stateList(){
 		
 		var selectState=document.getElementById("state").value;
@@ -110,7 +110,9 @@ function stateList(){
 			});
 		}
 	}
-	
+//여기까지
+
+//병원 검색 메서드 여기서부터
 	function fn_search(_pagenum){
 		
 		var originalState=document.getElementById("state").value;
@@ -146,7 +148,7 @@ function stateList(){
 	        }
 	    });
 	}
-	
+
 	function fn_afterSearch(data,originalVccname) {
 		
 		var originalVccname=document.getElementById("vccname").value;
@@ -226,20 +228,20 @@ function stateList(){
 		
 		
 	}
+//병원 검색 여기까지
 
-//------------------------------------------------------------------------병원검색 js
 
 	//step1
 
 	function fn_step1_next(obj){
-		var urlParams = new URLSearchParams(window.location.search);
+		/*var urlParams = new URLSearchParams(window.location.search);
 		var hosname = urlParams.get('hosname');
-		console.log(hosname);
+		console.log(hosname);*/
 		var step3=document.getElementById("step3");
 		var step2=document.getElementById("step2");
 		var step1=document.getElementById("step1");
 		
-		if(hosname.length!=0){
+		/*if(hosname.length!=0){
 			step2.style.display="none";
 			step1.style.display="none";
 			step3.style.display="block";
@@ -249,8 +251,11 @@ function stateList(){
 			step2.style.display="block";
 			step1.style.display="none";
 			step3.style.display="none";
-		}		
+		}*/
 		
+		step2.style.display="block";
+		step1.style.display="none";
+		step3.style.display="none";
 	}
 
 	//step2
@@ -370,7 +375,7 @@ function stateList(){
 		modalresult="";
 		
 		$.ajax({
-            url: "${contextPath}/member/listFamilyMembers.do?mno=${memVO.mno}&action=ajax ",
+            url: "${contextPath}/member/listFamilyMembers.do?mno=${memVO.mno}&action=ajax",
             method: 'post',
             dataType: 'json',
             success: function(data) {
@@ -586,6 +591,17 @@ function inputemail(){
     memail2.value = selectEmail;
 }
 
+function fn_reservation_submit(obj){
+	var date=document.getElementById("rdate").val;
+	console.log("예약날짜"+date);
+	
+	if(date.length!=0){
+		obj.submit();
+	}
+	else{
+		alert("날짜를 입력해주세요.");
+	}
+}
 
 	
 </script>
@@ -843,7 +859,7 @@ function inputemail(){
 									</div>
 									<div class="d-flex justify-content-center mt-4">
 										<button type="button" class="btn btn-primary me-4" onClick="fn_step3_pre()">이전</button>
-										<button type="submit" class="btn btn-primary">예약하기</button>
+										<button type="button" class="btn btn-primary" onClick="fn_reservation_submit(this.form);">예약하기</button>
 									</div>
 								</form>
 							</main>
@@ -936,10 +952,10 @@ function inputemail(){
 											<input type="text" class="name-input form-control" id="rphone" name="rphone" value="${memVO.mphone}" disabled style="width:150px;">	
 										</div>
 									</div>
-									<p>가족 본인의 동의를 받고 대리 예약하였음을 확인합니다. 아닐 시 법적 효력이 유효합니다.(?)
+									<p>가족 본인의 동의를 받고 대리 예약하였음을 확인합니다.
 									<div class="d-flex justify-content-center mt-4">
 										<button type="button" class="btn btn-primary me-4" onClick="fn_step3_pre()">이전</button>
-										<button type="submit" class="btn btn-primary">예약하기</button>
+										<button type="button" class="btn btn-primary" onClick="fn_reservation_submit(this.form);">예약하기</button>
 									</div>
 								</form>
 							</main>

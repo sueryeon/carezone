@@ -19,7 +19,7 @@ public class HospitalDAOImpl implements HospitalDAO {
 	@Override
 	public void insertHospital(HospitalVO hosVO) throws Exception {
 		
-		System.out.println("――――――――――Qna DAO : insertQna――――――――――");
+		System.out.println("――――――――――병원 DAO : insertQna――――――――――");
 		
 		sqlsession.insert("mapper.hospital.insertHospital", hosVO);
 		
