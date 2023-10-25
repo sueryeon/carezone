@@ -91,10 +91,12 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView getLoginForm(@RequestParam(value="result", required = false) String result,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("controller의 getLoginForm() 도착");
 		request.setCharacterEncoding("utf-8");
+		String action=request.getParameter("action");
 		String viewName = getViewName(request);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result", result);
-		mav.setViewName(viewName);		
+		mav.addObject("action", action);
+		mav.setViewName(viewName);
 		return mav;
 	}
 	

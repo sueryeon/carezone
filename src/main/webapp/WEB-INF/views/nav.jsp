@@ -68,19 +68,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
-	
 	function fn_reserv(){
+		
 		var action = "reserv";
 		var isLogin = "${isLogin}";
 		var isAdminLogin = "${isAdminLogin}";
 		
 		if(isLogin=="true"||isLogin.length!=0){
-			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do?";
+			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do?action="+action;
 			window.location.href=resvurl;
 		}
 		
-<%-- 		if((isLogin=="false"||isLogin=="")||(isAdminLogin=="false"||isAdminLogin=="")){
+ 		if((isLogin=="false"||isLogin=="")||(isAdminLogin=="false"||isAdminLogin=="")){
 			if (confirm("로그인 후 진행해 주세요")) {
 	            
 	            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
@@ -90,30 +89,33 @@ document.addEventListener("DOMContentLoaded", function() {
 		else {
 			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do";
 			window.location.href=resvurl;
-		} --%>
+		}
 	}
 	
-	function fn_myresv(){
-		//내 예약하기
+	
+	function fn_myreserv(){
+
 		var action = "myreserv";
 		var isLogin = "${isLogin}";
-		if(isLogin=="false"||isLogin==""){
+		var isAdminLogin = "${isAdminLogin}";
+		
+		if(isLogin=="true"||isLogin.length!=0){
+			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do?";
+			window.location.href=resvurl;
+		}
+		
+ 		if((isLogin=="false"||isLogin=="")||(isAdminLogin=="false"||isAdminLogin=="")){
 			if (confirm("로그인 후 진행해 주세요")) {
-	            // 사용자가 확인을 선택한 경우 action 값을 URL로 전달하고 이동합니다.
+	            
 	            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
 	            window.location.href = loginurl;
 	        }
 		}
-		else{
+		else {
 			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do";
 			window.location.href=resvurl;
 		}
-	}
-	
-	function fn_myreserv(){
-		//내 예약 보기
-		var myrsvurl = "<%=contextPath%>/reservation/getlistMyReservations.do?mid=${memVO.mid}";
-		window.location.href=myrsvurl;
+ 		
 	}
 	
 	function fn_allreserv(){

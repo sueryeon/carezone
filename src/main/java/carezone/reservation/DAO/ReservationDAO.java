@@ -24,7 +24,7 @@ public interface ReservationDAO {
 	
 	public ReservationVO findReservation(int rno) throws DataAccessException;
 	
-	public int updateReservation(ReservationVO rsvVO) throws DataAccessException;
+	public void updateReservation(ReservationVO rsvVO) throws DataAccessException;
 	
 	public ReservationVO getDetailReservation(int rno) throws DataAccessException;
 	

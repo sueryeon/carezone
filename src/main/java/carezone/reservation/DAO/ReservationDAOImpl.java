@@ -111,15 +111,15 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	@Override
-	public int updateReservation(ReservationVO rsvVO) throws DataAccessException {
+	public void updateReservation(ReservationVO rsvVO) throws DataAccessException {
 
-		System.out.println("――――――――――――――――ReservationDAO : updateReservation――――――――――――――――");
+		System.out.println("――――――――――――――――예약DAO : 수정하기――――――――――――――――");
 		
-		int result=sqlsession.update("mapper.reservation.updateReservation", rsvVO);
-		System.out.println(rsvVO.getRno());
+		sqlsession.update("mapper.reservation.updateReservation", rsvVO);
+		System.out.println("파라미터 rsvVO rno,rhospital,rvcc : "+rsvVO.getRno());
 		System.out.println(rsvVO.getRhospital());
-		System.out.println(rsvVO.getRvcc());
-		return result;
+		System.out.println(rsvVO.getRvcc()+" 입니다.");
+
 	}
 
 	@Override

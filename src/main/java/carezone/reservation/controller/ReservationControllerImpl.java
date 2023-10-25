@@ -2,7 +2,6 @@ package carezone.reservation.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import carezone.hoscart.vo.HosCartVO;
 import carezone.hospital.VO.HospitalVO;
+import carezone.member.vo.AdminVO;
 import carezone.member.vo.MemberVO;
 import carezone.reservation.VO.ReservationVO;
 import carezone.reservation.service.ReservationService;
@@ -34,7 +34,7 @@ public class ReservationControllerImpl implements ReservationController {
 	@Override
 	@RequestMapping(value={"/getlistReservations.do","/getlistMyReservations.do"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getlistReservations(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("=======================ReservationController : getlistReservations=======================");
+		System.out.println("=======================예약컨트롤러 : 예약리스트가져오기=======================");
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -84,7 +84,7 @@ public class ReservationControllerImpl implements ReservationController {
 	@RequestMapping(value="/getreservationForm.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getReservationForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("=======================ReservationController : getReservationForm=======================");
+		System.out.println("=======================예약컨트롤러 : 예약폼가져오기=======================");
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -161,11 +161,13 @@ public class ReservationControllerImpl implements ReservationController {
 	@RequestMapping(value="/insertReservation.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView insertReservation(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
+		System.out.println("======================예약컨트롤러 : insert=======================");
+		
 		String hc_no = (String) request.getParameter("hcno");
-		System.out.println("장바구니"+hc_no.length());
+		System.out.println("장바구니 길이 : "+hc_no.length());
 		String action=request.getParameter("action");
 		
-		System.out.println(action);
+		System.out.println("action 값 : "+action);
 		HttpSession session = request.getSession();
 		MemberVO memVO = (MemberVO) session.getAttribute("memVO");
 		
@@ -186,7 +188,7 @@ public class ReservationControllerImpl implements ReservationController {
 			Date rdate = dateFormat.parse(rdate1);
 			int hosno=Integer.parseInt(request.getParameter("hos__no"));
 			
-			System.out.println("rsubbirth1"+rsubbirth1);
+			System.out.println("rsubbirth1 : "+rsubbirth1);
 			
 			ReservationVO rVO=new ReservationVO(rid,rname,rbirth1,rbirth2,rphone,rsubname,rsubbirth1,rsubphone,rhospital,rvcc,rdate);
 			
@@ -207,11 +209,11 @@ public class ReservationControllerImpl implements ReservationController {
 		}
 		else if(action.equals("self")) {
 
-			System.out.println("셀프존 도착");
+			System.out.println("분기점 본인예약일때");
 			String rid=memVO.getMid();
 			String rname=request.getParameter("rname");
 			String rbirth1=request.getParameter("rbirth1");
-			System.out.println("rid"+rid);
+			System.out.println("rid : "+rid);
 			int rbirth2=Integer.parseInt(request.getParameter("rbirth2"));
 			String rphone=request.getParameter("rphone");
 			String rhospital=request.getParameter("rhospital");
@@ -220,19 +222,19 @@ public class ReservationControllerImpl implements ReservationController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date rdate = dateFormat.parse(rdate1);			
 			int hosno=Integer.parseInt(request.getParameter("hos__no"));
-			System.out.println("rhospital"+rhospital);
+			System.out.println("rhospital : "+rhospital);
 			
 			ReservationVO rVO=new ReservationVO(rid,rname,rbirth1,rbirth2,rphone,rhospital,rvcc,rdate);
 			
 			if(hc_no==null||hc_no.length()==0) {
 				
-				System.out.println("장바구니 아닐때");
+				System.out.println("분기점 장바구니 아닐때");
 				reservationService.insertReservation(rVO,hosno);
 				ModelAndView mav=new ModelAndView("redirect:/reservation/getlistMyReservations.do?mid="+rid);
 				return mav;
 			}
 			else {
-				System.out.println("장바구니 일때");
+				System.out.println("분기점 장바구니 일때");
 				int hcno = Integer.parseInt(hc_no);
 				
 				HosCartVO hcVO = new HosCartVO(hcno, memVO.getMid());
@@ -253,7 +255,7 @@ public class ReservationControllerImpl implements ReservationController {
 	@RequestMapping(value="/deleteReservation.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView deleteReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("=======================ReservationController : deleteReservation=======================");
+		System.out.println("======================예약컨트롤러 : 삭제=======================");
 		
 		request.setCharacterEncoding("UTF-8");
 		int result=0;
@@ -273,7 +275,7 @@ public class ReservationControllerImpl implements ReservationController {
 	@RequestMapping(value="/findReservation.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView findReservation(@RequestParam("rno") int rno,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("=======================ReservationController : findReservation=======================");
+		System.out.println("=======================예약컨트롤러 : 수정폼 가져오기=======================");
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -295,109 +297,60 @@ public class ReservationControllerImpl implements ReservationController {
 	@RequestMapping(value="/updateReservation.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView updateReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("=======================ReservationController : updateReservation=======================");
+		System.out.println("=======================예약컨트롤러 : 수정하기=======================");
 		
 		request.setCharacterEncoding("UTF-8");
-		
-		String action=request.getParameter("action");
-		
-		System.out.println(action);
 		HttpSession session = request.getSession();
 		MemberVO memVO = (MemberVO) session.getAttribute("memVO");
+		AdminVO adVO=(AdminVO) session.getAttribute("adVO");
 		
 		if(memVO.getMid()!=null||memVO.getMid().length()!=0) {
 			
-			if(action.equals("family")) {
-				
-				System.out.println("도착했씁");
-				int result=0;
-				
-				int rno=Integer.parseInt(request.getParameter("rno"));
-				String rhospital=request.getParameter("rhospital");
-				String rvcc=request.getParameter("rvcc");
-				String rdate1=request.getParameter("rdate");
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		        Date rdate = dateFormat.parse(rdate1);
-				System.out.println("rno"+rno);
-				System.out.println("rno"+rhospital);
-				System.out.println("rno"+rvcc);
-				System.out.println("rno"+rdate);
-				
-		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
-				//----------------------------------------------전처리▲
-				
-				result=reservationService.updateReservation(rsvVO);
-				ModelAndView mav=new ModelAndView("redirect:/reservation/getlistMyReservations.do");
-				
-				return mav;
-			}
-			else if(action.equals("self")) {
+			System.out.println("분기점 회원일때 수정하기");
 
-				System.out.println("셀프존 도착");
-				
-				int result=0;
-				System.out.println();
-				int rno=Integer.parseInt(request.getParameter("rno"));
-				String rhospital=request.getParameter("rhospital");
-				String rvcc=request.getParameter("rvcc");
-				String rdate1=request.getParameter("rdate");
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		        Date rdate = dateFormat.parse(rdate1);
-				
-		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
-				//----------------------------------------------전처리▲
-				
-				result=reservationService.updateReservation(rsvVO);
-				ModelAndView mav=new ModelAndView("redirect:/reservation/getlistMyReservations.do");
-				return mav;
-				
-			}
-			else {
-				System.out.println("완전오류");
-				return null;
-			}
-		}
-		else {
+			int rno=Integer.parseInt(request.getParameter("rno"));
+			String rhospital=request.getParameter("rhospital");
+			String rvcc=request.getParameter("rvcc");
+			String rdate1=request.getParameter("rdate");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        Date rdate = dateFormat.parse(rdate1);
+			System.out.println("수정된 파라미터 rno : "+rno);
+			System.out.println("rhospital : "+rhospital);
+			System.out.println("rvcc : "+rvcc);
+			System.out.println("rdate : "+rdate);
 			
-			if(action.equals("family")) {
-				
-				int result=0;
-				System.out.println("가족 도착");
-				int rno=Integer.parseInt(request.getParameter("rno"));
-				System.out.println("rno"+rno);
-				String rhospital=request.getParameter("rhospital");
-				String rvcc=request.getParameter("rvcc");
-				String rdate1=request.getParameter("rdate");
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		        Date rdate = dateFormat.parse(rdate1);
-				
-		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
-				//----------------------------------------------전처리▲
-				
-				result=reservationService.updateReservation(rsvVO);
-				
-			}
-			else if(action.equals("self")) {
-
-				int result=0;
-				System.out.println("셀프존 도착");
-				int rno=Integer.parseInt(request.getParameter("rno"));
-				String rhospital=request.getParameter("rhospital");
-				String rvcc=request.getParameter("rvcc");
-				String rdate1=request.getParameter("rdate");
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		        Date rdate = dateFormat.parse(rdate1);
-				
-		        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
-				//----------------------------------------------전처리▲
-				
-				result=reservationService.updateReservation(rsvVO);
-				
-			}
+	        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
+			//----------------------------------------------전처리▲
 			
-			ModelAndView mav=new ModelAndView("redirect:/reservation/getlistReservations.do");
+			reservationService.updateReservation(rsvVO);
+			ModelAndView mav=new ModelAndView("redirect:/reservation/getDetailReservation.do?rno="+rno);
 			
 			return mav;
+			
+		}
+		else if(adVO.getAdid()!=null||adVO.getAdid().length()!=0) {
+			System.out.println("분기점 관리자일때 수정하기");
+				
+			int rno=Integer.parseInt(request.getParameter("rno"));
+			System.out.println("rno"+rno);
+			String rhospital=request.getParameter("rhospital");
+			String rvcc=request.getParameter("rvcc");
+			String rdate1=request.getParameter("rdate");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        Date rdate = dateFormat.parse(rdate1);
+			
+	        rsvVO=new ReservationVO(rno,rhospital,rvcc,rdate);
+			//----------------------------------------------전처리▲
+			
+			reservationService.updateReservation(rsvVO);
+
+			ModelAndView mav=new ModelAndView("redirect:/reservation/getDetailReservation.do?rno="+rno);
+			
+			return mav;
+		}
+		else {
+			System.out.println("session is null error");
+			return null;
 		}
 		
 	}
@@ -455,7 +408,7 @@ public class ReservationControllerImpl implements ReservationController {
 		return fileName;
 	}
 
-	@Override
+	/*@Override
 	@RequestMapping(value="/getFamilyrsvForm.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getFamilyrsvForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -530,7 +483,7 @@ public class ReservationControllerImpl implements ReservationController {
 			
 			return mav;
 		}
-	}
+	}*/
 
 
 

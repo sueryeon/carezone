@@ -15,6 +15,6 @@ public interface ReservationController {
 	public ModelAndView updateReservation(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView getDetailReservation(int rno, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView getFamilyrsvForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	/*public ModelAndView getFamilyrsvForm(HttpServletRequest request, HttpServletResponse response) throws Exception;*/
 	
 }

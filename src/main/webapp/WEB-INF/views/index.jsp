@@ -323,9 +323,27 @@ function fn_admin_reservation() //관리자 예약관리로 들어가기
 
 function fn_my_reservation() // 회원나의 예약관리 
 {
-	//내 예약 보기
-	var myrsvurl = "${contextPath}/reservation/getlistMyReservations.do?mid=${memVO.mid}";
-	window.location.href=myrsvurl;
+	var action = "reserv";
+	var isLogin = "${isLogin}";
+	var isAdminLogin = "${isAdminLogin}";
+	
+	if(isLogin=="true"||isLogin.length!=0){
+		var resvurl = "<%=contextPath%>/reservation/getreservationForm.do?";
+		window.location.href=resvurl;
+	}
+	
+		if((isLogin=="false"||isLogin=="")||(isAdminLogin=="false"||isAdminLogin=="")){
+		if (confirm("로그인 후 진행해 주세요")) {
+            
+            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
+            window.location.href = loginurl;
+        }
+	}
+	else {
+		var resvurl = "<%=contextPath%>/reservation/getreservationForm.do";
+		window.location.href=resvurl;
+	}
+
 }
 
  function fn_mypage(action){
@@ -333,7 +351,8 @@ function fn_my_reservation() // 회원나의 예약관리
       var mypageurl = "${contextPath}/member/findMember.do?action="+action;
       window.location.href=mypageurl;
 }
-//------------------------------------------------------의료기관 js
+ 
+//의료기관 js 여기서부터 
 function stateList(){
 		
 		var selectState=document.getElementById("state").value;
@@ -376,8 +395,9 @@ function stateList(){
 			});
 		}
 	}
-//------------------------------------------------------의료기관 js
-//-------------------------------------부트스트랩
+//의료기관 찾기 여기까지 
+
+//부트스트랩 슬라이더 여기서부터 
  const myCarouselElement = document.querySelector('#myCarousel')
 
  const carousel = new bootstrap.Carousel(myCarouselElement, {
@@ -395,7 +415,7 @@ function stateList(){
    })
  })
  
- //-------------------------------------부트스트랩
+ //슬라이더 부트스트랩 여기까
 </script>
 <link rel="stylesheet" href="./resources/CSS/index.css">
 </head>

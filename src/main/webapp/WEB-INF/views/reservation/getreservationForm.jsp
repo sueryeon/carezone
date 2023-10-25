@@ -236,12 +236,12 @@ function stateList(){
 	function fn_step1_next(obj){
 		/*var urlParams = new URLSearchParams(window.location.search);
 		var hosname = urlParams.get('hosname');
-		console.log(hosname);*/
+		console.log(hosname);
 		var step3=document.getElementById("step3");
 		var step2=document.getElementById("step2");
 		var step1=document.getElementById("step1");
 		
-		/*if(hosname.length!=0){
+		if(hosname.length!=0){
 			step2.style.display="none";
 			step1.style.display="none";
 			step3.style.display="block";
@@ -496,7 +496,7 @@ function stateList(){
 		
 	}
 	
-/*================본인 인증 및 이메일 인증 함수================*/    
+/*================본인 인증 및 이메일 인증 함수================
 var checkNum
 function fn_memcheck(){
 	var mname = document.getElementById("mname").value;
@@ -590,16 +590,16 @@ function inputemail(){
     var selectEmail = document.getElementById("memailSelect").value;
     memail2.value = selectEmail;
 }
-
+*/
+//날짜 필드 Null check
 function fn_reservation_submit(obj){
 	var date=document.getElementById("rdate").val;
-	console.log("예약날짜"+date);
 	
-	if(date.length!=0){
-		obj.submit();
+	if(!date){
+		alert("날짜를 입력해주세요.");
 	}
 	else{
-		alert("날짜를 입력해주세요.");
+		obj.submit();
 	}
 }
 
@@ -693,7 +693,7 @@ function fn_reservation_submit(obj){
 									 </div>	
 								</div>
 							</div>
-							<div id="nextBtn" style="display:none;">
+							<div id="nextBtn" style="display:block;">
 								<button type="button" class="btn btn-primary" onClick="fn_step1_next(this.form)">다음</button>
 							</div>
 						</div>
@@ -854,7 +854,7 @@ function fn_reservation_submit(obj){
 										<!-- 예약 날짜 -->
 										<div class="mb-3" style="width:100%;">
 											<label for="rdate" class="subtitle-label form-label" style="width:100%;">예약날짜</label>
-											<input type="date" class="name-input form-control" id="rdate" name="rdate" style="width:208px;">	
+											<input type="date" class="name-input form-control" id="rdate" name="rdate" style="width:208px;" required>	
 										</div>
 									</div>
 									<div class="d-flex justify-content-center mt-4">
@@ -937,7 +937,7 @@ function fn_reservation_submit(obj){
 										<!-- 예약 날짜 -->
 										<div class="mb-3" style="width:100%;">
 											<label for="rdate" class="subtitle-label form-label" style="width:100%;">예약날짜</label>
-											<input type="date" class="name-input form-control" id="rdate" name="rdate" style="width:208px;">	
+											<input type="date" class="name-input form-control" id="rdate" name="rdate" style="width:208px;" required>	
 										</div>
 									</div>
 									<div class="m-auto d-flex">

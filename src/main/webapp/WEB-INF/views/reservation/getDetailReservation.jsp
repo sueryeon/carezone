@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String contextPath=request.getContextPath();
-%> 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,17 +55,23 @@ window.onload=function(){
 	}
 
 }
+
+function fn_back(){
+	window.history.back();
+}
+
+function fn_update_rsv(rno,obj){
+	console.log("click");
+	obj.action="${contextPath}/reservation/findReservation.do?rno="+rno;
+	obj.submit();
+}
 </script>
 
 <style>
-   .black-link{
-      color: black;
-      text-decoration: none;
-   }
-   .black-link:hover{
-      color: blue;
-      text-decoration: underline;
-   }
+
+input{
+outline: none;
+}
 </style>
 </head>
 <body>
@@ -102,35 +105,66 @@ window.onload=function(){
 				<div id="step1">
 					<h3 class="border-bottom border-2 border-secondary-subtle pb-3 mt-4 pt-5 mb-0"><strong>예약 상세보기</strong></h3>
 					<div class="right-box mt-4 mb-4" >
-		             	<table class="table">
-							<tbody>
-								<tr>
-									<th scope="col">예약번호</th>
-									<td>${rsvVO.rno}</td>
-								</tr>
-								<tr>
-									<th scope="col">이름</th>
-									<td>${rsvVO.rname}</td>
-								</tr>
-								<tr>
-									<th scope="col">주민등록번호</th>
-									<td>${rsvVO.rbirth1} - ${rsvVO.rbirth2}</td>
-								</tr>
-								<tr>
-									<th scope="col">폰번호</th>
-									<td>${rsvVO.rphone}</td>
-								</tr>
-								<tr>
-									<th scope="col">예약병원</th>
-									<td>${rsvVO.rhospital}</td>
-								</tr>
-								<tr>
-									<th scope="col">예약백신</th>
-									<td>${rsvVO.rvcc}</td>
-								</tr>
-							<tbody>
-						</table>  
-	           		 </div>
+						<form action="${contextPath}/" method="post">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th colspan="1" scope="col">예약번호</th>
+										<td colspan="4">
+											<input type="number" style="border: none; background: transparent;" value="${rsvVO.rno}" readonly>
+										</td>
+									</tr>
+									<c:choose>
+										<c:when test="${empty rsvVO.rsubname}">
+											<tr>
+												<th colspan="1" scope="col">이름</th>
+												<td colspan="4" >${rsvVO.rname}</td>
+											</tr>
+											<tr>
+												<th colspan="1" scope="col">주민등록번호</th>
+												<td colspan="4">${rsvVO.rbirth1}</td>
+											</tr>
+											<tr>
+												<th colspan="1" scope="col">연락처</th>
+												<td colspan="4">${rsvVO.rphone}</td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<th colspan="1" scope="col">이름</th>
+												<td colspan="4">${rsvVO.rsubname}</td>
+											</tr>
+											<tr>
+												<th colspan="1" scope="col">주민등록번호</th>
+												<td colspan="4">${rsvVO.rsubbirth1}</td>
+											</tr>
+											<tr>
+												<th colspan="1" scope="col">연락처</th>
+												<td colspan="4">${rsvVO.rsubphone}</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+									<tr>
+										<th colspan="1" scope="col">예약병원</th>
+										<td colspan="4">${rsvVO.rhospital}</td>
+									</tr>
+									<tr>
+										<th colspan="1" scope="col">예약백신</th>
+										<td colspan="4">${rsvVO.rvcc}</td>
+									</tr>
+									<tr>
+										<th colspan="1" scope="col">예약날짜</th>
+										<td colspan="4"><fmt:formatDate value="${rsvVO.rdate}" pattern='yyyy-MM-dd' /></td>
+									</tr>
+								<tbody>
+							</table>
+							<button type="button" class="btn btn-primary" onClick="fn_back()">목록으로</button>
+							<div class="float-end">
+								<button type="button" class="btn btn-primary" onClick="fn_update_rsv(${rsvVO.rno},this.form)">예약수정</button>
+								<button type="button" class="btn btn-primary" onClick="fn_delete_rsv(${rsvVO.rno},this.form)">예약취소</button>
+							</div>
+						</form>
+	           		</div>
 	         	</div>
 			</div>
 		</div>

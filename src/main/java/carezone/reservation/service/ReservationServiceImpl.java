@@ -91,11 +91,11 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int updateReservation(ReservationVO rsvVO) throws DataAccessException {
+	public void updateReservation(ReservationVO rsvVO) throws DataAccessException {
 		
-		System.out.println("-------------------ReservationService : deleteReservation-------------------");
+		System.out.println("-------------------예약서비스 : 수정하기-------------------");
 		
-		return reservationDAO.updateReservation(rsvVO);
+		reservationDAO.updateReservation(rsvVO);
 		
 	}
 
