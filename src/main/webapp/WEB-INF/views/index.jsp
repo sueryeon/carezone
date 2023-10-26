@@ -321,30 +321,7 @@ function fn_admin_reservation() //관리자 예약관리로 들어가기
 }
    
 
-function fn_my_reservation() // 회원나의 예약관리 
-{
-	var action = "reserv";
-	var isLogin = "${isLogin}";
-	var isAdminLogin = "${isAdminLogin}";
-	
-	if(isLogin=="true"||isLogin.length!=0){
-		var resvurl = "<%=contextPath%>/reservation/getreservationForm.do?";
-		window.location.href=resvurl;
-	}
-	
-		if((isLogin=="false"||isLogin=="")||(isAdminLogin=="false"||isAdminLogin=="")){
-		if (confirm("로그인 후 진행해 주세요")) {
-            
-            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
-            window.location.href = loginurl;
-        }
-	}
-	else {
-		var resvurl = "<%=contextPath%>/reservation/getreservationForm.do";
-		window.location.href=resvurl;
-	}
 
-}
 
  function fn_mypage(action){
       //console.log("action : "action);

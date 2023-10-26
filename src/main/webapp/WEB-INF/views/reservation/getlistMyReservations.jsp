@@ -50,18 +50,7 @@
 		}
 	
 	}
-</script>
-<style>
-   .black-link{
-      color: black;
-      text-decoration: none;
-   }
-   .black-link:hover{
-      color: blue;
-      text-decoration: underline;
-   }
-</style>
-<script>
+
 	document.addEventListener('DOMContentLoaded', function() {
 	    const mvcinsertform = document.querySelector('.a-mvcinsertform');
 	    const mvclistform = document.querySelector('.a-mvclistform');
@@ -275,6 +264,5 @@
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp"/>
-	
 </body>
 </html>

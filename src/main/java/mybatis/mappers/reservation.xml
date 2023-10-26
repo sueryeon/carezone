@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 <!-- ====================예약 삭제하기====================  -->	
 
 	<select id="findReservation" resultType="ReservationVO" parameterType="int">
-		<![CDATA[select rno,rid,rname,rbirth1,rbirth2,rphone,rhospital,rvcc,rdate from reservation where rno=#{rno}]]>
+		<![CDATA[select * from reservation where rno=#{rno}]]>
 	</select>
 <!-- ====================예약 수정폼====================  -->
 

@@ -13,7 +13,6 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="memVO" value="${memVO}"/>
 <c:set var="adVO" value="${adVO}"/>
-
 <script type="text/javascript">
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -99,24 +98,21 @@ document.addEventListener("DOMContentLoaded", function() {
 		var isLogin = "${isLogin}";
 		var isAdminLogin = "${isAdminLogin}";
 		
-		if(isLogin=="true"||isLogin.length!=0){
-			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do?";
+		if(isLogin=="true"&&isLogin.length!=0){
+			var resvurl = "<%=contextPath%>/reservation/getlistMyReservations.do?";
 			window.location.href=resvurl;
 		}
 		
- 		if((isLogin=="false"||isLogin=="")||(isAdminLogin=="false"||isAdminLogin=="")){
+		else if(isLogin=="false"||isAdminLogin=="false"){
 			if (confirm("로그인 후 진행해 주세요")) {
 	            
-	            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
+	            var loginurl = "<%=contextPath%>/member/loginForm.do?action="+action;
 	            window.location.href = loginurl;
 	        }
-		}
-		else {
-			var resvurl = "<%=contextPath%>/reservation/getreservationForm.do";
-			window.location.href=resvurl;
+			
 		}
  		
-	}
+	} 
 	
 	function fn_allreserv(){
 		var allreserv = "<%=contextPath%>/reservation/getlistReservations.do";

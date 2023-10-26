@@ -234,28 +234,37 @@ function stateList(){
 	//step1
 
 	function fn_step1_next(obj){
-		/*var urlParams = new URLSearchParams(window.location.search);
+		var urlParams = new URLSearchParams(window.location.search);
 		var hosname = urlParams.get('hosname');
+		
+		<%--
+		var step2=document.getElementById("step2");
+		var step1=document.getElementById("step1");
+		
+		step1.style.display="none";
+		step2.style.display="block";
+		--%>
 		console.log(hosname);
 		var step3=document.getElementById("step3");
 		var step2=document.getElementById("step2");
 		var step1=document.getElementById("step1");
 		
-		if(hosname.length!=0){
+		if(hosname!=null){
 			step2.style.display="none";
 			step1.style.display="none";
 			step3.style.display="block";
+			var hos__no1=document.getElementById("hos__no1");
+			var hc_hosno = urlParams.get('hos_no');
+			hos__no1.value = hc_hosno;
 		}
 		
 		else{
 			step2.style.display="block";
 			step1.style.display="none";
 			step3.style.display="none";
-		}*/
+		}		
 		
-		step2.style.display="block";
-		step1.style.display="none";
-		step3.style.display="none";
+		
 	}
 
 	//step2
@@ -496,7 +505,7 @@ function stateList(){
 		
 	}
 	
-/*================본인 인증 및 이메일 인증 함수================
+//================본인 인증 및 이메일 인증 함수================
 var checkNum
 function fn_memcheck(){
 	var mname = document.getElementById("mname").value;
@@ -590,12 +599,13 @@ function inputemail(){
     var selectEmail = document.getElementById("memailSelect").value;
     memail2.value = selectEmail;
 }
-*/
+
 //날짜 필드 Null check
 function fn_reservation_submit(obj){
-	var date=document.getElementById("rdate").val;
+	var date=document.getElementById("rdate").value;
 	
-	if(!date){
+	if(date===""){
+		console.log(date);
 		alert("날짜를 입력해주세요.");
 	}
 	else{

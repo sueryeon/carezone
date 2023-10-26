@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
+//네비바js 여기서부터 
 window.onload=function(){
 	
 	var isLogin = "${isLogin}";
@@ -50,7 +52,9 @@ window.onload=function(){
 	}
 
 }
-//-------------------------------------------------------네비바 js-----------------------------
+//네비바 js 여기까지
+
+//지역검색 필드 가져오기 여기서부터
 	function stateList(){
 		
 		var selectState=document.getElementById("state").value;
@@ -134,7 +138,9 @@ window.onload=function(){
 			});
 		}
 	}
-	
+//여기까지 
+
+//지역검색 후 리스트 가져오기 
 	function fn_search(_pagenum){
 		var originalState=document.getElementById("state").value;
 		var originalCity=document.getElementById("city").value;
@@ -227,7 +233,7 @@ window.onload=function(){
 						result += '<td>예약가능</td>';
 						result += "<td><a href='${contextPath}/reservation/getreservationForm.do?hosname="+VO.hosname+"&vccname="+originalVccname+"&hosno="+VO.hosno+"'>";
 						result += '예약</a></td>';
-						result += '<td><a href="#" onClick="fn_inserthosCart('+VO.hosno+','+VO.hosname+')">담기</a></td></tr>';
+						result += '<td><a href="#" onClick="fn_inserthosCart('+VO.hosno+', \''+VO.hosname+'\')">담기</a></td></tr>';
 					}
 					else if(VO.vccquantity===null){
 						result += '<td>백신을 선택해주세요.</td>';
@@ -285,7 +291,9 @@ window.onload=function(){
 		
 		
 	}
-//------------------------------------------------------------------------병원검색 js
+//병원검색 리스트 펼치기 여기까지 
+
+
 	function fn_alert(){
 		
 		alert("예약이 불가능합니다.");
@@ -294,6 +302,7 @@ window.onload=function(){
 	function fn_cart_alert(){
 		alert("재고가 부족하여 담기가 불가능합니다.");
 	}
+	
 	
 	function fn_inserthosCart(hosno,hosname){
 		
@@ -378,7 +387,8 @@ window.onload=function(){
 	    
 
 	});
-//------------------------------------------------------------병원예약 및 담기 js	
+//병원예약 및 담기 js 여기까지
+
 </script>
 <link rel="stylesheet" href="../resources/CSS/listHospital.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">

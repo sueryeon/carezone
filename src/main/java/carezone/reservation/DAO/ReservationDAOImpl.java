@@ -33,14 +33,19 @@ public class ReservationDAOImpl implements ReservationDAO {
 	@Override
 	public void insertReservation(ReservationVO rsvVO,int hosno) throws DataAccessException {
 		
-		System.out.println("――――――――――――――――ReservationDAO : insertReservation――――――――――――――――");
+		System.out.println("――――――――――――――――예약DAO : 예약 insert――――――――――――――――");
 		
 		String rsubname=rsvVO.getRsubname();
+		System.out.println("가져온 가족 이름 : "+rsubname);
+		
 		if(rsubname!=null) {
+			System.out.println("분기점 가족예약일때 : "+rsubname);
 			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO); //가족 예약 추가
 			sqlsession.insert("mapper.checklist.insertChecklist_family", rsvVO); //가족 체크리스트 추가
 		}
 		else {
+			System.out.println("분기점 본인예약일때 ");
+			
 			sqlsession.insert("mapper.reservation.insertReservation_self", rsvVO); //본인 예약 추가
 			sqlsession.insert("mapper.checklist.insertChecklist_self", rsvVO); //본인 체크리스트 추가
 		}
@@ -56,16 +61,22 @@ public class ReservationDAOImpl implements ReservationDAO {
 		System.out.println("――――――――――――――――ReservationDAO :  장바구니에서 insertReservation――――――――――――――――");
 		
 		String rsubname=rsvVO.getRsubname();
-		if(rsubname!=null||rsubname.length()!=0) {
-			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO);
+		System.out.println("가져온 가족 이름 : "+rsubname);
+		
+		
+		if(rsubname!=null) {
+			System.out.println("분기점 가족예약일때 : "+rsubname);
+			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO); //가족 예약 추가
+			sqlsession.insert("mapper.checklist.insertChecklist_family", rsvVO); //가족 체크리스트 추가
 		}
 		else {
-			sqlsession.insert("mapper.reservation.insertReservation_self", rsvVO);
+			System.out.println("분기점 본인예약일때 ");
+			
+			sqlsession.insert("mapper.reservation.insertReservation_self", rsvVO); //본인 예약 추가
+			sqlsession.insert("mapper.checklist.insertChecklist_self", rsvVO); //본인 체크리스트 추가
 		}
 		
 		sqlsession.update("mapper.hospital.updateVccquantity",hosno);
-		sqlsession.insert("mapper.reservation.insertReservation", rsvVO);
-		
 	}
 
 	@Override

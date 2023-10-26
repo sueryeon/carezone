@@ -48,6 +48,67 @@
 		}
 	
 	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+	    const mvcinsertform = document.querySelector('.a-mvcinsertform');
+	    const mvclistform = document.querySelector('.a-mvclistform');
+	    const hopitalform = document.querySelector('.a-hopitalform');
+	
+	    mvclistform.classList.add('active'); // 초기 링크를 활성화 상태로 표시
+	    
+	    hopitalform.addEventListener('click', function() {
+	        hopitalform.classList.add('active'); //링크 활성화
+	        mvcinsertform.classList.remove('active'); // 다른 링크 비활성화
+	        mvclistform.classList.remove('active'); // 다른 링크 비활성화
+	    });
+	    
+	    mvcinsertform.addEventListener('click', function() {
+	    	mvcinsertform.classList.add('active'); //링크 활성화
+	    	hopitalform.classList.remove('active'); // 다른 링크 비활성화
+	        mvclistform.classList.remove('active'); // 다른 링크 비활성화
+	    });
+	    
+	    mvclistform.addEventListener('click', function() {
+	    	mvclistform.classList.add('active'); //링크 활성화
+	    	hopitalform.classList.remove('active'); // 다른 링크 비활성화
+	    	mvcinsertform.classList.remove('active'); // 다른 링크 비활성화
+	    });
+
+	});
+	
+	function fn_all(){
+		
+		var all=  document.getElementById("all");
+		var self=  document.getElementById("self");
+		var family=  document.getElementById("family");
+		var choose=  document.getElementById("choose");
+		all.style.display="block";
+		self.style.display="none";
+		family.style.display="none";
+		choose.innerText="전체";
+	}
+	function fn_self(){
+		
+		var all=  document.getElementById("all");
+		var self=  document.getElementById("self");
+		var family=  document.getElementById("family");
+		var choose=  document.getElementById("choose");
+		all.style.display="none";
+		self.style.display="block";
+		family.style.display="none";
+		choose.innerText="본인";
+	}
+	function fn_family(){
+		
+		var all=  document.getElementById("all");
+		var self=  document.getElementById("self");
+		var family=  document.getElementById("family");
+		var choose=  document.getElementById("choose");
+		all.style.display="none";
+		self.style.display="none";
+		family.style.display="block";
+		choose.innerText="가족";
+	}
 </script>
 <link rel="stylesheet" href="../resources/CSS/findMember.css">
 </head>
@@ -66,10 +127,9 @@
                         <div class="card mypg-service-box mt-2">
                         	<ul class="list-group list-group-flush">
 							    <li class="list-group-item al-mypgform"><a class="qna-alink" href="<%=contextPath%>/member/findMember.do?action=member">회원정보 수정</a></li>
-							    <li class="list-group-item al-myrsvlistform active"><a class="qna-alink" href="<%=contextPath%>/reservation/getlistMyReservations.do?action=mypage">나의 예약 내역</a></li>
+							    <li class="list-group-item al-myrsvlistform active"><a class="qna-alink" href="<%=contextPath%>/reservation/getlistMyReservations.do?action=mypage">예약 내역 조회</a></li>
 							    <li class="list-group-item al-mflistform"><a class="qna-alink" href="<%=contextPath%>/member/listFamilyMembers.do">가족 조회</a></li>
 							    <li class="list-group-item al-mfinsertform"><a class="qna-alink" href="<%=contextPath%>/member/FamFormMember.do">가족 추가</a></li>
-						   		<li class="list-group-item al-mfrsvlistform"><a class="qna-alink" href="<%=contextPath%>/reservation/getlistFamReservations.do">가족 예약 내역</a></li>
 						   </ul>    
                         </div>
                      </div>
@@ -78,31 +138,126 @@
 			</div>
 			<!-- 오른쪽 -->
 			<div class="right ms-4 text-center" style="width: 80%;" >
-				<h3 class="border-bottom border-2 border-secondary-subtle text-start pb-3 mt-4 pt-5 mb-0"><strong>본인 예방접종 관리</strong></h3>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col">병원</th>
-							<th scope="col">백신</th>
-							<th scope="col">예약날짜</th>
-							<th scope="col">작성날짜</th>
-							<th scope="col">예약상세</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="listReservation" items="${listReservations}" >
-							<tr>        
-								<td>${listReservation.rhospital}</td>
-								<td>${listReservation.rvcc}</td>
-								<td><fmt:formatDate value="${listReservation.rdate}" pattern="yy-MM-dd HH:mm" /></td>
-								<td><fmt:formatDate value="${listReservation.rwritedate}" pattern="yy-MM-dd HH:mm"/> </td>
-								<td>
-									<a href="<%=contextPath%>/reservation/getDetailReservation.do?rno=${listReservation.rno}">상세보기</a>
-								</td>
+				<h3 class="border-bottom border-2 border-secondary-subtle text-start pb-3 mt-4 pt-5 mb-0"><strong>예약 내역 조회</strong></h3>
+				<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				  <div class="container-fluid">
+				    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				        <li class="nav-item dropdown">
+				          <p class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="choose">
+				          	전체
+				          </p>
+				          <ul class="dropdown-menu">
+				            <li><a class="dropdown-item" href="#" onClick="fn_all()">전체</a></li>
+				            <li><a class="dropdown-item" href="#" onClick="fn_self()">본인</a></li>
+				            <li><a class="dropdown-item" href="#" onClick="fn_family()">가족</a></li>
+				          </ul>
+				        </li>
+				      </ul>
+				    </div>
+				  </div>
+				</nav>
+				<div id="all" style="display: block;">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">병원</th>
+								<th scope="col">백신</th>
+								<th scope="col">예약날짜</th>
+								<th scope="col">예약명</th>
+								<th scope="col">작성날짜</th>
+								<th scope="col">예약상세</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach var="listReservation" items="${listReservations}" >
+								<tr>        
+									<td>${listReservation.rhospital}</td>
+									<td>${listReservation.rvcc}</td>
+									<td><fmt:formatDate value="${listReservation.rdate}" pattern="yy-MM-dd" /></td>
+	 								<td>
+	 									<c:choose>
+					                        <c:when test="${not empty listReservation.rsubname}">
+					                            ${listReservation.rsubname}
+					                        </c:when>
+					                        <c:otherwise>
+					                            ${listReservation.rname}
+					                        </c:otherwise>
+				                    	</c:choose>
+				                    </td>
+				                    <td><fmt:formatDate value="${listReservation.rwritedate}" pattern="yy-MM-dd"/></td>
+									<td>
+										<a href="<%=contextPath%>/reservation/getDetailReservation.do?rno=${listReservation.rno}">상세보기</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div id="self" style="display: none;">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">병원</th>
+								<th scope="col">백신</th>
+								<th scope="col">예약날짜</th>
+								<th scope="col">예약명</th>
+								<th scope="col">작성날짜</th>
+								<th scope="col">예약상세</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="listReservation" items="${listReservations}">
+								<c:choose>
+									<c:when test="${empty listReservation.rsubname}">
+										<tr>        
+											<td>${listReservation.rhospital}</td>
+											<td>${listReservation.rvcc}</td>
+											<td><fmt:formatDate value="${listReservation.rdate}" pattern="yy-MM-dd" /></td>
+			 								<td>${listReservation.rname}</td>
+						                    <td><fmt:formatDate value="${listReservation.rwritedate}" pattern="yy-MM-dd"/></td>
+											<td>
+												<a href="<%=contextPath%>/reservation/getDetailReservation.do?rno=${listReservation.rno}">상세보기</a>
+											</td>
+										</tr>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div id="family" style="display: none;">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">병원</th>
+								<th scope="col">백신</th>
+								<th scope="col">예약날짜</th>
+								<th scope="col">예약명</th>
+								<th scope="col">작성날짜</th>
+								<th scope="col">예약상세</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="listReservation" items="${listReservations}" >
+								<c:choose>
+									<c:when test="${!empty listReservation.rsubname}">
+										<tr>        
+											<td>${listReservation.rhospital}</td>
+											<td>${listReservation.rvcc}</td>
+											<td><fmt:formatDate value="${listReservation.rdate}" pattern="yy-MM-dd" /></td>
+			 								<td>${listReservation.rsubname}</td>
+						                    <td><fmt:formatDate value="${listReservation.rwritedate}" pattern="yy-MM-dd"/></td>
+											<td>
+												<a href="<%=contextPath%>/reservation/getDetailReservation.do?rno=${listReservation.rno}">상세보기</a>
+											</td>
+										</tr>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

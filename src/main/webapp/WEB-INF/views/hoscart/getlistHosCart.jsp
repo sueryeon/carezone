@@ -95,7 +95,7 @@ window.onload=function(){
 			<!-- 오른쪽 -->
 			<div class="right ms-4" style="width: 80%;" >
 				<div id="step1">
-					<h3 class="border-bottom border-2 border-secondary-subtle pb-3 mt-4 pt-5 mb-0"><strong>본인 인증</strong></h3>
+					<h3 class="border-bottom border-2 border-secondary-subtle pb-3 mt-4 pt-5 mb-0"><strong>관심 백신</strong></h3>
 					<div class="right-box mt-4 mb-4" >
 						<div class="m-auto mt-3 m-0">
 							<table class="table">

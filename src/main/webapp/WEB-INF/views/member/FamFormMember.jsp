@@ -184,10 +184,9 @@
                         <div class="card mypg-service-box mt-2">
                         	<ul class="list-group list-group-flush">
 							    <li class="list-group-item al-mypgform"><a class="qna-alink" href="<%=contextPath%>/member/findMember.do?action=member">회원정보 수정</a></li>
-							    <li class="list-group-item al-myrsvlistform"><a class="qna-alink" href="<%=contextPath%>/reservation/getlistMyReservations.do?action=mypage">나의 예약 내역</a></li>
+							    <li class="list-group-item al-myrsvlistform"><a class="qna-alink" href="<%=contextPath%>/reservation/getlistMyReservations.do?action=mypage">예약 내역 조회</a></li>
 							    <li class="list-group-item al-mflistform"><a class="qna-alink" href="<%=contextPath%>/member/listFamilyMembers.do">가족 조회</a></li>
 							    <li class="list-group-item al-mfinsertform active"><a class="qna-alink" href="<%=contextPath%>/member/FamFormMember.do">가족 추가</a></li>
-						   		<li class="list-group-item al-mfrsvlistform"><a class="qna-alink" href="<%=contextPath%>/reservation/getlistFamReservations.do">가족 예약 내역</a></li>
 						   </ul>    
                         </div>
                      </div>
